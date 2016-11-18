@@ -18,7 +18,7 @@ public class UserController {
   @Autowired
   private UserService userservice;
   
-  @RequestMapping(value = "/users/{id}", method = RequestMethod.POST, produces ="application/json", consumes = "application/json")
+  @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces ="application/json", consumes = "application/json")
   public @ResponseBody ResponseEntity<UserDto>  getMoviesById(@PathVariable (value="id") long id) {
        UserDto userDto = userservice.getmovies(id) ;
        if(userDto==null)
