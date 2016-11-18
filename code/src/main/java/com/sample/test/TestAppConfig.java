@@ -1,4 +1,4 @@
-package sample_test.code;
+package com.sample.test;
 
 import net.sf.log4jdbc.sql.jdbcapi.DataSourceSpy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 
 @Configuration
-public class AppConfig {
+public class TestAppConfig {
     @Autowired
     DataSourceProperties dataSourceProperties;
 
