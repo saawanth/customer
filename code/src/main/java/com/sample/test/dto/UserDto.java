@@ -3,10 +3,10 @@ package com.sample.test.dto;
 public class UserDto {
   
  
-  private long id;
+  private Long id;
   private String  movie;
   private double rating;
-  private long count;
+  private Long count;
   
   public long getId() {
     return id;

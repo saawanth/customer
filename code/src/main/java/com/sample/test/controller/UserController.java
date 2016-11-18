@@ -13,6 +13,7 @@ import com.sample.test.dto.UserDto;
 import com.sample.test.service.UserService;
 
 @RestController
+@RequestMapping("/myservice")
 public class UserController {
   
   @Autowired
