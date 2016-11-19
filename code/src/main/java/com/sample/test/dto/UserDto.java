@@ -1,13 +1,32 @@
 package com.sample.test.dto;
 
+import java.util.List;
+
 public class UserDto {
   
  
   private Long id;
   private String  movie;
   private double rating;
-  private Long count;
-  
+  private List<UserRatingDto> ratingsDto;
+
+ 
+
+
+  /**
+   * @return the ratingsDto
+   */
+  public List<UserRatingDto> getRatingsDto() {
+    return ratingsDto;
+  }
+
+  /**
+   * @param ratingsDto the ratingsDto to set
+   */
+  public void setRatingsDto(List<UserRatingDto> ratingsDto) {
+    this.ratingsDto = ratingsDto;
+  }
+
   public long getId() {
     return id;
   }
@@ -32,14 +51,7 @@ public class UserDto {
     this.rating = rating;
   }
  
-  public long getCount() {
-    return count;
-  }
- 
-  public void setCount(long count) {
-    this.count = count;
-  }
-  
+
   
 
 }

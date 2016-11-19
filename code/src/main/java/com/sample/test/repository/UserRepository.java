@@ -11,7 +11,7 @@ import com.sample.test.model.Users;
 @Transactional
 public interface UserRepository extends BaseRepository<Users, Long>{
   
- /* @Query("select euser from User AS euser where euser.id=:id")
-  public User getSpecificUser(@Param("id") long id);*/
+  @Query("select euser from Users AS euser left join fetch euser.userRatings where euser.id=:id")
+  public Users getSpecificUser(@Param("id") long id);
 
 }
