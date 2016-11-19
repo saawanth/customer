@@ -9,17 +9,20 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 
 	@Entity
-	@NamedQuery(name="User.findAll", query="SELECT u FROM User u")
-	public class User implements Serializable {
+	@Table(name="users")
+	@NamedQuery(name="User.findAll", query="SELECT u FROM Users u")
+	public class Users implements Serializable {
 		private static final long serialVersionUID = 1L;
 
 		@Id
-		private Long id;
+		@Column(name="id")
+		private long id;
 
 		@Temporal(TemporalType.DATE)
 		@Column(name="user_dob")
@@ -35,7 +38,7 @@ import javax.persistence.TemporalType;
 		@OneToMany(mappedBy="user")
 		private List<UserRating> userRatings;
 
-		public User() {
+		public Users() {
 		}
 
 	

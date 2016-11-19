@@ -24,13 +24,13 @@ public class UserRating implements Serializable {
 
 	//bi-directional many-to-one association to Movy
 	@ManyToOne
-	@JoinColumn(name="movie_id",insertable= false, updatable=false)
+	@JoinColumn(name="movie_id",referencedColumnName = "id",insertable= false, updatable=false)
 	private Movies movies;
 
 	//bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="user_id",insertable= false, updatable=false)
-	private User user;
+	@JoinColumn(name="user_id",referencedColumnName = "id",insertable= false, updatable=false)
+	private Users user;
 
 	public UserRating() {
 	}
@@ -59,11 +59,11 @@ public class UserRating implements Serializable {
 		this.movies = movies;
 	}
 
-	public User getUser() {
+	public Users getUser() {
 		return this.user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(Users user) {
 		this.user = user;
 	}
 

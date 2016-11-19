@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sample.test.dto.UserDto;
-import com.sample.test.model.User;
+import com.sample.test.model.Users;
 import com.sample.test.repository.UserRepository;
 
 @Service
@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService{
   @Override
   public UserDto getmovies(long id) {
    
-   User user= userrepo.getSpecificUser(id);
+   Users user= userrepo.findOne(id);
    UserDto userdto = new UserDto();
    userdto.setId(user.getId());
    
