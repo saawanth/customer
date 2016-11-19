@@ -44,14 +44,21 @@ public MoviesDto getMoviesAvgById(long id) {
 	Movies movies = userrepo.getMoviesAvgById(id);
 	MoviesDto moviesDto=new MoviesDto();
 	moviesDto.setId(movies.getId());
+	double totalRating=0;
+	long size=0;
+	
 	List<UserRating> userRating = movies.getUserRatings();
 	List<UserRatingDto> userRatingDto = new ArrayList<UserRatingDto>();
 	for(UserRating uRating:userRating){
 		UserRatingDto userRatingDto2=new UserRatingDto();
 		userRatingDto2.setRating(uRating.getRating());
+		totalRating=totalRating+uRating.getRating();
+		size=size+1;
 		userRatingDto.add(userRatingDto2);
 				
 	}
+	double aveRating=totalRating/size;
+	moviesDto.setAverageMovieRating(aveRating);
 	moviesDto.setUserRatings(userRatingDto);
 		return moviesDto;
 }

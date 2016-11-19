@@ -8,6 +8,7 @@ public class MoviesDto {
 	private Long id;
 	private String movieName;
 	private String movieGenre;
+	private double averageMovieRating;
 	private List<UserRatingDto> userRatings;
 	
 	public Long getId() {
@@ -15,6 +16,13 @@ public class MoviesDto {
 	}
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public double getAverageMovieRating() {
+		return averageMovieRating;
+	}
+	public void setAverageMovieRating(double averageMovieRating) {
+		this.averageMovieRating = averageMovieRating;
 	}
 	public String getMovieName() {
 		return movieName;
