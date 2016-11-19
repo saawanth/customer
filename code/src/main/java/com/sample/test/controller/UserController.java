@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sample.test.dto.MoviesDto;
 import com.sample.test.dto.UserDto;
 import com.sample.test.service.UserService;
 
@@ -29,5 +30,13 @@ public class UserController {
        return new ResponseEntity<UserDto>(userDto,HttpStatus.OK);    
        
   }
+  @RequestMapping(value = "/moviesavg/{id}", method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
+  public @ResponseBody ResponseEntity<MoviesDto>  getMoviesAvgById(@Valid @PathVariable (value="id") long id) {
+	  MoviesDto moviesDto = userservice.getMoviesAvgById(id) ;
+       if(moviesDto==null)
+         return new ResponseEntity<MoviesDto>(HttpStatus.BAD_REQUEST);
+       return new ResponseEntity<MoviesDto>(moviesDto,HttpStatus.OK);    
+       
+  }  
 
 }
