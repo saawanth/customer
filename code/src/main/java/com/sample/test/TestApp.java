@@ -25,8 +25,8 @@ public class TestApp {
         return new WebMvcConfigurerAdapter() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                //registry.addMapping("/**").allowedOrigins("http://localhost:8080");
-                registry.addMapping("/**").allowedOrigins("*"); // allows all origins
+                registry.addMapping("/**").allowedOrigins("http://localhost:8080");
+//                registry.addMapping("/**").allowedOrigins("*"); // allows all origins
             }
         };
     }

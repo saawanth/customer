@@ -4,7 +4,7 @@
 
 CREATE TABLE public."user"
 (
-  id integer NOT NULL,
+  id serial NOT NULL,
   user_firstname character varying,
   user_lastname character varying,
   user_dob date,
@@ -22,7 +22,7 @@ ALTER TABLE public."user"
 
 CREATE TABLE public.movies
 (
-  id integer NOT NULL,
+  id serial NOT NULL,
   movie_name character varying,
   movie_genre character varying,
   CONSTRAINT movie_id_pk PRIMARY KEY (id)

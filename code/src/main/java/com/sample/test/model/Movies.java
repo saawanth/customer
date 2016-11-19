@@ -19,7 +19,7 @@ public class Movies implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	private Integer id;
+	private Long id;
 
 	@Column(name="movie_genre")
 	private String movieGenre;
@@ -34,15 +34,17 @@ public class Movies implements Serializable {
 	public Movies() {
 	}
 
-	public Integer getId() {
-		return this.id;
-	}
+	
+  public Long getId() {
+    return id;
+  }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public String getMovieGenre() {
+
+  public String getMovieGenre() {
 		return this.movieGenre;
 	}
 

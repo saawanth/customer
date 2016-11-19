@@ -1,5 +1,7 @@
 package com.sample.test.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +21,8 @@ public class UserController {
   @Autowired
   private UserService userservice;
   
-  @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces ="application/json", consumes = "application/json")
-  public @ResponseBody ResponseEntity<UserDto>  getMoviesById(@PathVariable (value="id") long id) {
+  @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
+  public @ResponseBody ResponseEntity<UserDto>  getMoviesById(@Valid @PathVariable (value="id") long id) {
        UserDto userDto = userservice.getmovies(id) ;
        if(userDto==null)
          return new ResponseEntity<UserDto>(HttpStatus.BAD_REQUEST);

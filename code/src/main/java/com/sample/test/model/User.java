@@ -19,7 +19,7 @@ import javax.persistence.TemporalType;
 		private static final long serialVersionUID = 1L;
 
 		@Id
-		private Integer id;
+		private Long id;
 
 		@Temporal(TemporalType.DATE)
 		@Column(name="user_dob")
@@ -38,15 +38,20 @@ import javax.persistence.TemporalType;
 		public User() {
 		}
 
-		public Integer getId() {
-			return this.id;
-		}
+	
 
-		public void setId(Integer id) {
-			this.id = id;
-		}
+	
+    public Long getId() {
+      return id;
+    }
 
-		public Date getUserDob() {
+    public void setId(Long id) {
+      this.id = id;
+    }
+
+
+
+    public Date getUserDob() {
 			return this.userDob;
 		}
 
