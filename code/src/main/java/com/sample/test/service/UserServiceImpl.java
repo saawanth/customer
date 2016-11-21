@@ -23,21 +23,26 @@ public class UserServiceImpl implements UserService{
   @Override
   public UserDto getmovies(long id) {
    
-   Users user= userrepo.getSpecificUser(id);
-   List<UserRating> userrating = user.getUserRatings();
-   UserDto userdto = new UserDto();
-   userdto.setId(user.getId());
-   List<UserRatingDto> userRatingdto = new ArrayList<UserRatingDto>();
-   for(UserRating urating:userrating){
-  
-     UserRatingDto userratingdto = new UserRatingDto();
-     userratingdto.setRating(urating.getRating());
-     userRatingdto.add(userratingdto);
-    
-   }
-   userdto.setRatingsDto(userRatingdto);
-   return userdto;
-}
+	  Users user= userrepo.getSpecificUser(id);
+	  List<UserRating> userrating = user.getUserRatings();
+	  UserDto userdto = new UserDto();
+	  userdto.setId(user.getId());
+	  List<UserRatingDto> userRatingdtoList = new ArrayList<UserRatingDto>();
+	  
+	  for(UserRating urating:userrating){
+	 
+	    UserRatingDto userratingdto = new UserRatingDto();
+	    userratingdto.setRating(urating.getRating());
+	    Movies movies = urating.getMovies() ;
+	    MoviesDto moviesdto= new MoviesDto();
+	    
+	    moviesdto.setMovieName(movies.getMovieName());
+	    userratingdto.setMovies(moviesdto);
+	       userRatingdtoList.add(userratingdto);
+	     }
+	  userdto.setRatingsDto(userRatingdtoList);
+	  return userdto;
+	}
 
 @Override
 public MoviesDto getMoviesAvgById(long id) {
@@ -48,18 +53,24 @@ public MoviesDto getMoviesAvgById(long id) {
 	long size=0;
 	
 	List<UserRating> userRating = movies.getUserRatings();
-	List<UserRatingDto> userRatingDto = new ArrayList<UserRatingDto>();
+	List<UserRatingDto> userRatingDtoList = new ArrayList<UserRatingDto>();
 	for(UserRating uRating:userRating){
 		UserRatingDto userRatingDto2=new UserRatingDto();
 		userRatingDto2.setRating(uRating.getRating());
 		totalRating=totalRating+uRating.getRating();
 		size=size+1;
-		userRatingDto.add(userRatingDto2);
+		userRatingDtoList.add(userRatingDto2);
 				
 	}
 	double aveRating=totalRating/size;
 	moviesDto.setAverageMovieRating(aveRating);
-	moviesDto.setUserRatings(userRatingDto);
+	moviesDto.setUserRatings(userRatingDtoList);
 		return moviesDto;
+}
+
+@Override
+public MoviesDto getTopMovies(long id, String movieGenre) {
+	
+	return null;
 }
 }

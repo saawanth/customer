@@ -7,5 +7,6 @@ public interface UserService {
   
   public UserDto getmovies(long id);
   public MoviesDto getMoviesAvgById(long id);
+  public MoviesDto getTopMovies(long id, String movieGenre);
 
 }

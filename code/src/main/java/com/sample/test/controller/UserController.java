@@ -22,17 +22,25 @@ public class UserController {
   @Autowired
   private UserService userservice;
   
-  @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
-  public @ResponseBody ResponseEntity<UserDto>  getMoviesById(@Valid @PathVariable (value="id") long id) {
+  @RequestMapping(value = "/users/{id}", method = RequestMethod.GET, produces = "application/json")
+  public @ResponseBody ResponseEntity<UserDto>  getMoviesById( @PathVariable (value="id") long id) {
        UserDto userDto = userservice.getmovies(id) ;
        if(userDto==null)
          return new ResponseEntity<UserDto>(HttpStatus.BAD_REQUEST);
        return new ResponseEntity<UserDto>(userDto,HttpStatus.OK);    
        
   }
-  @RequestMapping(value = "/moviesavg/{id}", method = RequestMethod.GET, produces = "application/json", consumes = "application/json")
-  public @ResponseBody ResponseEntity<MoviesDto>  getMoviesAvgById(@Valid @PathVariable (value="id") long id) {
+  @RequestMapping(value = "/moviesavg/{id}", method = RequestMethod.GET, produces = "application/json")
+  public @ResponseBody ResponseEntity<MoviesDto>  getMoviesAvgById( @PathVariable (value="id") long id) {
 	  MoviesDto moviesDto = userservice.getMoviesAvgById(id) ;
+       if(moviesDto==null)
+         return new ResponseEntity<MoviesDto>(HttpStatus.BAD_REQUEST);
+       return new ResponseEntity<MoviesDto>(moviesDto,HttpStatus.OK);    
+       
+  }  
+  @RequestMapping(value = "/topmovies/{userid}/{genre}", method = RequestMethod.GET, produces = "application/json")
+  public @ResponseBody ResponseEntity<MoviesDto>  getTopMovies( @PathVariable (value="id") long id, @PathVariable (value="movieGenre") String movieGenre ) {
+	  MoviesDto moviesDto = userservice.getTopMovies(id, movieGenre);
        if(moviesDto==null)
          return new ResponseEntity<MoviesDto>(HttpStatus.BAD_REQUEST);
        return new ResponseEntity<MoviesDto>(moviesDto,HttpStatus.OK);    
