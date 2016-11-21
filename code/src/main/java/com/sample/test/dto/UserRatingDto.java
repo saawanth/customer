@@ -6,8 +6,17 @@ public class UserRatingDto {
   private Long movieId;
   private Long userId;
   private MoviesDto movies;
+  private UserDto users;
  
-  public double getRating() {
+public UserDto getUsers() {
+	return users;
+}
+
+public void setUsers(UserDto users) {
+	this.users = users;
+}
+
+public double getRating() {
     return rating;
   }
  

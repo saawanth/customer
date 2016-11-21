@@ -8,12 +8,21 @@ public class UserDto {
   private Long id;
   private String  movie;
   private double rating;
+  private long count;
   private List<UserRatingDto> ratingsDto;
 
  
 
 
-  /**
+  public long getCount() {
+	return count;
+}
+
+public void setCount(long count) {
+	this.count = count;
+}
+
+/**
    * @return the ratingsDto
    */
   public List<UserRatingDto> getRatingsDto() {

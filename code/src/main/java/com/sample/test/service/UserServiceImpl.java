@@ -3,6 +3,7 @@ package com.sample.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,9 @@ public class UserServiceImpl implements UserService{
 	    userratingdto.setMovies(moviesdto);
 	       userRatingdtoList.add(userratingdto);
 	     }
+	  
 	  userdto.setRatingsDto(userRatingdtoList);
+	  userdto.setCount(userRatingdtoList.size());
 	  return userdto;
 	}
 
@@ -49,6 +52,8 @@ public MoviesDto getMoviesAvgById(long id) {
 	Movies movies = userrepo.getMoviesAvgById(id);
 	MoviesDto moviesDto=new MoviesDto();
 	moviesDto.setId(movies.getId());
+	moviesDto.setMovieName(movies.getMovieName());
+	moviesDto.setMovieGenre(movies.getMovieGenre());
 	double totalRating=0;
 	long size=0;
 	
@@ -69,8 +74,22 @@ public MoviesDto getMoviesAvgById(long id) {
 }
 
 @Override
-public MoviesDto getTopMovies(long id, String movieGenre) {
+public UserRatingDto getTopMovies(long userId, String movieGenre) {
+	UserRating userRating=userrepo.getTopMovies(userId, movieGenre);
+	UserRatingDto userRatingDto=new UserRatingDto();
+	Users users=userRating.getUser();
+	 UserDto userdto = new UserDto();
+	 userdto.setId(users.getId());
+	 Movies movies =userRating.getMovies();
+	 MoviesDto moviesDto=new MoviesDto();
+	 moviesDto.setId(movies.getId());
+	 moviesDto.setMovieGenre(movies.getMovieGenre());
+	 userRatingDto.setUsers(userdto);
+	 userRatingDto.setMovies(moviesDto);
 	
-	return null;
+		
+	
+	
+	return userRatingDto;
 }
 }

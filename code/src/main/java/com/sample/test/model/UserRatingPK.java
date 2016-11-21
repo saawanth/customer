@@ -13,45 +13,61 @@ public class UserRatingPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name="user_id", insertable=false, updatable=false)
-	private Integer userId;
+	private long userId;
 
 	@Column(name="movie_id", insertable=false, updatable=false)
-	private Integer movieId;
+	private long movieId;
 
 	public UserRatingPK() {
 	}
-	public Integer getUserId() {
-		return this.userId;
+	
+
+	public long getUserId() {
+		return userId;
 	}
-	public void setUserId(Integer userId) {
+
+
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	public Integer getMovieId() {
-		return this.movieId;
+
+
+	public long getMovieId() {
+		return movieId;
 	}
-	public void setMovieId(Integer movieId) {
+
+
+	public void setMovieId(long movieId) {
 		this.movieId = movieId;
 	}
 
-	public boolean equals(Object other) {
-		if (this == other) {
-			return true;
-		}
-		if (!(other instanceof UserRatingPK)) {
-			return false;
-		}
-		UserRatingPK castOther = (UserRatingPK)other;
-		return 
-			this.userId.equals(castOther.userId)
-			&& this.movieId.equals(castOther.movieId);
-	}
 
+	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int hash = 17;
-		hash = hash * prime + this.userId.hashCode();
-		hash = hash * prime + this.movieId.hashCode();
-		
-		return hash;
+		int result = 1;
+		result = prime * result + (int) (movieId ^ (movieId >>> 32));
+		result = prime * result + (int) (userId ^ (userId >>> 32));
+		return result;
 	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		UserRatingPK other = (UserRatingPK) obj;
+		if (movieId != other.movieId)
+			return false;
+		if (userId != other.userId)
+			return false;
+		return true;
+	}
+
+
+	
 }

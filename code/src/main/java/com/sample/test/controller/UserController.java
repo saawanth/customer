@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sample.test.dto.MoviesDto;
 import com.sample.test.dto.UserDto;
+import com.sample.test.dto.UserRatingDto;
 import com.sample.test.service.UserService;
 
 @RestController
@@ -38,12 +39,12 @@ public class UserController {
        return new ResponseEntity<MoviesDto>(moviesDto,HttpStatus.OK);    
        
   }  
-  @RequestMapping(value = "/topmovies/{userid}/{genre}", method = RequestMethod.GET, produces = "application/json")
-  public @ResponseBody ResponseEntity<MoviesDto>  getTopMovies( @PathVariable (value="id") long id, @PathVariable (value="movieGenre") String movieGenre ) {
-	  MoviesDto moviesDto = userservice.getTopMovies(id, movieGenre);
-       if(moviesDto==null)
-         return new ResponseEntity<MoviesDto>(HttpStatus.BAD_REQUEST);
-       return new ResponseEntity<MoviesDto>(moviesDto,HttpStatus.OK);    
+  @RequestMapping(value = "/topmovies/{userId}/{movieGenre}", method = RequestMethod.GET, produces = "application/json")
+  public @ResponseBody ResponseEntity<UserRatingDto>  getTopMovies( @PathVariable (value="userId") long userId, @PathVariable (value="movieGenre") String movieGenre ) {
+	  UserRatingDto userRatingDto = userservice.getTopMovies(userId, movieGenre);
+       if(userRatingDto==null)
+         return new ResponseEntity<UserRatingDto>(HttpStatus.BAD_REQUEST);
+       return new ResponseEntity<UserRatingDto>(userRatingDto,HttpStatus.OK);    
        
   }  
 
