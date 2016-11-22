@@ -9,28 +9,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table(name="user_ratings")
-@NamedQuery(name="UserRating.findAll", query="SELECT u FROM UserRating u")
+@Table(name = "user_ratings")
+@NamedQuery(name = "UserRating.findAll", query = "SELECT u FROM UserRating u")
 public class UserRating implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@EmbeddedId
 	private UserRatingPK id;
 
-	private double rating;
+	private Integer rating;
 
-	//bi-directional many-to-one association to Movy
+	// bi-directional many-to-one association to Movy
 	@ManyToOne
-	@JoinColumn(name="movie_id",referencedColumnName = "id",insertable= false, updatable=false)
-	private Movies movies;
+	@JoinColumn(name = "movie_id", referencedColumnName = "id", insertable = false, updatable = false)
+	private Movie movie;
 
-	//bi-directional many-to-one association to User
+	// bi-directional many-to-one association to User
 	@ManyToOne
-	@JoinColumn(name="user_id",referencedColumnName = "id",insertable= false, updatable=false)
-	private Users user;
+	@JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+	private User user;
 
 	public UserRating() {
 	}
@@ -43,27 +41,27 @@ public class UserRating implements Serializable {
 		this.id = id;
 	}
 
-	public double getRating() {
+	public Integer getRating() {
 		return this.rating;
 	}
 
-	public void setRating(double rating) {
+	public void setRating(Integer rating) {
 		this.rating = rating;
 	}
 
-	public Movies getMovies() {
-		return this.movies;
+	public Movie getMovie() {
+		return this.movie;
 	}
 
-	public void setMovies(Movies movies) {
-		this.movies = movies;
+	public void setMovie(Movie movie) {
+		this.movie = movie;
 	}
 
-	public Users getUser() {
+	public User getUser() {
 		return this.user;
 	}
 
-	public void setUser(Users user) {
+	public void setUser(User user) {
 		this.user = user;
 	}
 

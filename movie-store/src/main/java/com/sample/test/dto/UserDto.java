@@ -1,66 +1,32 @@
 package com.sample.test.dto;
 
-import java.util.List;
-
 public class UserDto {
-  
- 
-  private Long id;
-  private String  movie;
-  private double rating;
-  private long count;
-  private List<UserRatingDto> ratingsDto;
+	private Long userId;
+	private String firstname;
+	private String lastname;
 
- 
+	public Long getUserId() {
+		return userId;
+	}
 
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
 
-  public long getCount() {
-	return count;
-}
+	public String getFirstname() {
+		return firstname;
+	}
 
-public void setCount(long count) {
-	this.count = count;
-}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
 
-/**
-   * @return the ratingsDto
-   */
-  public List<UserRatingDto> getRatingsDto() {
-    return ratingsDto;
-  }
+	public String getLastname() {
+		return lastname;
+	}
 
-  /**
-   * @param ratingsDto the ratingsDto to set
-   */
-  public void setRatingsDto(List<UserRatingDto> ratingsDto) {
-    this.ratingsDto = ratingsDto;
-  }
-
-  public long getId() {
-    return id;
-  }
-  
-  public void setId(long id) {
-    this.id = id;
-  }
- 
-  public String getMovie() {
-    return movie;
-  }
- 
-  public void setMovie(String movie) {
-    this.movie = movie;
-  }
- 
-  public double getRating() {
-    return rating;
-  }
- 
-  public void setRating(double rating) {
-    this.rating = rating;
-  }
- 
-
-  
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
 
 }

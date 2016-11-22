@@ -3,93 +3,71 @@ package com.sample.test.service;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.sample.test.dto.MoviesDto;
 import com.sample.test.dto.UserDto;
+import com.sample.test.dto.UserMoviesDto;
 import com.sample.test.dto.UserRatingDto;
-import com.sample.test.model.Movies;
+import com.sample.test.dto.helper.MovieDtoHelper;
+import com.sample.test.dto.helper.UserDtoHelper;
+import com.sample.test.model.Movie;
+import com.sample.test.model.User;
 import com.sample.test.model.UserRating;
-import com.sample.test.model.Users;
+import com.sample.test.repository.UserRatingRepository;
 import com.sample.test.repository.UserRepository;
 
 @Service
-public class UserServiceImpl implements UserService{
+@Transactional
+public class UserServiceImpl extends BaseServiceImpl<User, Long, UserDto> implements UserService {
 
-  @Autowired
-  private UserRepository userrepo;
-  
-  @Override
-  public UserDto getmovies(long id) {
-   
-	  Users user= userrepo.getSpecificUser(id);
-	  List<UserRating> userrating = user.getUserRatings();
-	  UserDto userdto = new UserDto();
-	  userdto.setId(user.getId());
-	  List<UserRatingDto> userRatingdtoList = new ArrayList<UserRatingDto>();
-	  
-	  for(UserRating urating:userrating){
-	 
-	    UserRatingDto userratingdto = new UserRatingDto();
-	    userratingdto.setRating(urating.getRating());
-	    Movies movies = urating.getMovies() ;
-	    MoviesDto moviesdto= new MoviesDto();
-	    
-	    moviesdto.setMovieName(movies.getMovieName());
-	    userratingdto.setMovies(moviesdto);
-	       userRatingdtoList.add(userratingdto);
-	     }
-	  
-	  userdto.setRatingsDto(userRatingdtoList);
-	  userdto.setCount(userRatingdtoList.size());
-	  return userdto;
+	@Autowired
+	public UserServiceImpl(UserRepository repository, UserDtoHelper dtoHelper) {
+		super(repository, dtoHelper);
 	}
 
-@Override
-public MoviesDto getMoviesAvgById(long id) {
-	Movies movies = userrepo.getMoviesAvgById(id);
-	MoviesDto moviesDto=new MoviesDto();
-	moviesDto.setId(movies.getId());
-	moviesDto.setMovieName(movies.getMovieName());
-	moviesDto.setMovieGenre(movies.getMovieGenre());
-	double totalRating=0;
-	long size=0;
-	
-	List<UserRating> userRating = movies.getUserRatings();
-	List<UserRatingDto> userRatingDtoList = new ArrayList<UserRatingDto>();
-	for(UserRating uRating:userRating){
-		UserRatingDto userRatingDto2=new UserRatingDto();
-		userRatingDto2.setRating(uRating.getRating());
-		totalRating=totalRating+uRating.getRating();
-		size=size+1;
-		userRatingDtoList.add(userRatingDto2);
-				
-	}
-	double aveRating=totalRating/size;
-	moviesDto.setAverageMovieRating(aveRating);
-	moviesDto.setUserRatings(userRatingDtoList);
-		return moviesDto;
-}
+	@Autowired
+	private UserRepository userrepo;
 
-@Override
-public UserRatingDto getTopMovies(long userId, String movieGenre) {
-	UserRating userRating=userrepo.getTopMovies(userId, movieGenre);
-	UserRatingDto userRatingDto=new UserRatingDto();
-	Users users=userRating.getUser();
-	 UserDto userdto = new UserDto();
-	 userdto.setId(users.getId());
-	 Movies movies =userRating.getMovies();
-	 MoviesDto moviesDto=new MoviesDto();
-	 moviesDto.setId(movies.getId());
-	 moviesDto.setMovieGenre(movies.getMovieGenre());
-	 userRatingDto.setUsers(userdto);
-	 userRatingDto.setMovies(moviesDto);
-	
-		
-	
-	
-	return userRatingDto;
-}
+	@Autowired
+	private UserRatingRepository userRatingRepo;
+
+	@Autowired
+	private MovieDtoHelper movieDtoHelper;
+
+	/*
+	 * Given a userId, return all movies that user has watched and the total
+	 * count, as well as the rating for that movie.
+	 */
+	@Override
+	public UserMoviesDto getMoviesWatchedByUser(long userId) {
+		User user = userrepo.findOne(userId);
+
+		List<UserRating> usrRatings = userRatingRepo.getMoviesWatchedByUser(userId);
+
+		UserMoviesDto usrMoviesDto = new UserMoviesDto();
+		UserDto userDto = new UserDto();
+		userDto.setFirstname(user.getFirstname());
+		usrMoviesDto.setUserDto(userDto);
+
+		List<UserRatingDto> userRatingdtos = new ArrayList<UserRatingDto>();
+		if (usrRatings != null) {
+
+			for (UserRating usrRating : usrRatings) {
+				UserRatingDto userratingdto = new UserRatingDto();
+				userratingdto.setRating(usrRating.getRating());
+
+				Movie movie = usrRating.getMovie();
+				userratingdto.setMovie(movieDtoHelper.buildDto(movie));
+
+				userRatingdtos.add(userratingdto);
+			}
+		}
+
+		usrMoviesDto.setUserRatings(userRatingdtos);
+		usrMoviesDto.setNumOfMoviesWatched(userRatingdtos.size());
+		return usrMoviesDto;
+
+	}
 }

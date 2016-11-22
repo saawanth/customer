@@ -1,13 +1,10 @@
 package com.sample.test.service;
 
-import com.sample.test.dto.MoviesDto;
 import com.sample.test.dto.UserDto;
-import com.sample.test.dto.UserRatingDto;
+import com.sample.test.dto.UserMoviesDto;
 
-public interface UserService {
-  
-  public UserDto getmovies(long id);
-  public MoviesDto getMoviesAvgById(long id);
-  public UserRatingDto getTopMovies(long userId, String movieGenre);
+public interface UserService extends BaseService<Long, UserDto> {
+
+	public UserMoviesDto getMoviesWatchedByUser(long userId);
 
 }
