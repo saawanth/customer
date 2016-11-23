@@ -28,7 +28,7 @@ public class Movie implements Serializable {
 
 	@Column(name = "name")
 	private String name;
-
+		
 	// bi-directional many-to-one association to UserRating
 	@OneToMany(mappedBy = "movie")
 	private List<UserRating> userRatings;
