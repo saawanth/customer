@@ -24,7 +24,7 @@ public class MovieController extends BaseControllerImpl<Long, MovieDto> {
 		super(baseService);
 	}
 
-	@RequestMapping(value = "/{movieId}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/avgRating/{movieId}", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody ResponseEntity<MovieDto> findMovieWithAvgRating(
 			@PathVariable(value = "movieId") long movieId) {
 		MovieDto movieDto = ((MovieService) resourceService).findMovieWithAvgRating(movieId);

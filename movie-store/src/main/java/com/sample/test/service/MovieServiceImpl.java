@@ -35,7 +35,9 @@ public class MovieServiceImpl extends BaseServiceImpl<Movie, Long, MovieDto> imp
 
 	@Override
 	public MovieDto findMovieWithAvgRating(long movieId) {
-		Movie movie = ((MovieRepository) repository).findMovieWithAvgRating(movieId);
+		Movie movie = repository.findOne(movieId);
+		Integer rating = ((MovieRepository) repository).findMovieAvgRating(movieId);
+		movie.setRating(rating);
 		return dtoHelper.buildDto(movie);
 	}
 

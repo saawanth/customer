@@ -22,8 +22,8 @@ public interface MovieRepository extends BaseRepository<Movie, Long> {
 	 * @param id
 	 * @return
 	 */
-	@Query("SELECT m, AVG(ur.rating) as rating FROM Movie m LEFT JOIN FETCH m.userRatings ur where m.id=:id GROUP BY m ")
-	public Movie findMovieWithAvgRating(@Param("id") long id);
+	@Query("SELECT AVG(ur.rating) as rating FROM Movie m INNER JOIN m.userRatings ur where m.id=:id GROUP BY m ")
+	public Integer findMovieAvgRating(@Param("id") long id);
 
 	/**
 	 * Given a genre such as "action" and a userId, return the top 5 movies for
@@ -34,7 +34,7 @@ public interface MovieRepository extends BaseRepository<Movie, Long> {
 	 * @param genre
 	 * @return
 	 */
-	@Query("SELECT m, AVG(ur.rating) AS rating FROM UserRating ur JOIN ur.user AS u JOIN ur.movie AS m "
+	@Query("SELECT m.id, AVG(ur.rating) AS rating FROM UserRating ur JOIN ur.user AS u JOIN ur.movie AS m "
 			+ "WHERE m.genre=:genre AND u.id <>:userId AND u.dateOfBirth BETWEEN :dobStart AND :dobEnd GROUP BY m ")
 	public List<Movie> findTop5MoviesByGenre(@Param("userId") long userId, @Param("genre") Genre genre,
 			@Param("dobStart") Date dobStart, @Param("dobEnd") Date dobEnd, Pageable pageable);
