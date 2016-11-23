@@ -21,7 +21,7 @@ public interface MovieRepository extends BaseRepository<Movie, Long> {
 	 * @param id
 	 * @return
 	 */
-	@Query("SELECT m, AVG(ur.rating) as avgRating FROM Movie m INNER JOIN m.userRatings ur where m.id=:id")
+	@Query("SELECT m, AVG(ur.rating) as avgRating FROM Movie m INNER JOIN m.userRatings ur where m.id=:id GROUP BY m")
 	public Object findMovieAvgRating(@Param("id") long id);
 
 	/**
