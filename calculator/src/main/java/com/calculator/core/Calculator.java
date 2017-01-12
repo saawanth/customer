@@ -99,7 +99,7 @@ public class Calculator {
         ExpElement elem1 = postFixOperands.pop();
         ExpElement elem2 = postFixOperands.pop();
         double result =
-            operatorFactory.evaluate(expElem.getElement(), elem1.element, elem2.getElement());
+            operatorFactory.evaluate(expElem.getElement(), elem2.getElement(), elem1.getElement());
         postFixOperands.push(new ExpElement(String.valueOf(result), false));
       }
     }
