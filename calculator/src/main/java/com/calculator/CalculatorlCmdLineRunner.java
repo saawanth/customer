@@ -20,5 +20,7 @@ public class CalculatorlCmdLineRunner {
     System.out.println("----------------");
     System.out.println("result " + calculator.evaluate("1 + 1 - 4 * 4"));
     System.out.println("----------------");
+    System.out.println("result " + calculator.evaluate("11 + 12 - 12 * 13"));
+    System.out.println("----------------");
   }
 }
