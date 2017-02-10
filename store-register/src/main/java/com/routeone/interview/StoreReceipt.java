@@ -10,7 +10,7 @@ import com.routeone.interview.StoreRegister.Item;
 
 public class StoreReceipt implements Receipt {
 
-	private static final String DEFAULT_PATTERN = "###,###.###";
+	private static final String DEFAULT_PATTERN = "$###,###.##";
 
 	private final DecimalFormat decimalFormat;
 	private final List<Item> receiptItems;
