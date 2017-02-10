@@ -20,7 +20,7 @@ public class StoreRegister {
 		try {
 			br = new BufferedReader(new FileReader(inventoryFile));
 			String inventoryLine = br.readLine();
-			while (inventoryFile != null) {
+			while (inventoryLine != null) {
 				String[] lineItemProps = inventoryLine.split(",");
 				Item item = buildInventoryItem(lineItemProps);
 				itemsMap.put(item.getName(), item);
@@ -35,16 +35,16 @@ public class StoreRegister {
 
 	private Item buildInventoryItem(String[] lineItemProps) {
 		Builder builder = new Item.Builder();
-		return builder.withName(lineItemProps[0]).withCategory(lineItemProps[1]).withPrice(lineItemProps[2]).build();
+		return builder.withName(lineItemProps[0]).withPrice(lineItemProps[1]).withCategory(lineItemProps[2]).build();
 	}
 
 	public Receipt checkoutOrder(List<String> items) {
 		List<Item> receiptItems = new ArrayList<>();
 		double total = 0;
-		for (String itemStr : items) {
-			Item itm = itemsMap.get(itemStr);
+		for (String itemKeyStr : items) {
+			Item itm = getItem(itemKeyStr);
 			if (itm == null) {
-				throw new IllegalArgumentException("Item " + itemStr + " not found in the registry.");
+				throw new IllegalArgumentException("Item " + itemKeyStr + " not found in the registry.");
 			} else {
 				receiptItems.add(itm);
 				total += itm.getPrice();
@@ -52,6 +52,10 @@ public class StoreRegister {
 		}
 
 		return new StoreReceipt(receiptItems, total);
+	}
+
+	Item getItem(String itemKey) {
+		return itemsMap.get(itemKey);
 	}
 
 	public static class Item {
