@@ -63,7 +63,8 @@ public class DocumentServiceImpl implements DocumentService {
       document.setDocUrl(docPath);
     }
 
-    if (StringUtils.isEmpty(document.getDocType()) && docName.lastIndexOf(".") != -1) {
+    if (StringUtils.isEmpty(document.getDocType())
+        && document.getDocName().lastIndexOf(".") != -1) {
       String type = docName.substring(docName.lastIndexOf(".") + 1);
       document.setDocType(type);
     }
