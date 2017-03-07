@@ -17,17 +17,17 @@ public class DocumentController {
   @Autowired
   private DocumentService documentService;
 
-  @RequestMapping(method = RequestMethod.POST, consumes = {"multipart/form-data"})
+  // consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+
+  @RequestMapping(method = RequestMethod.POST)
   public @ResponseBody ResponseEntity<DocumentDto> create(@RequestParam("docName") String docName,
       @RequestParam("docType") String docType, @RequestParam("docTag") String docTag,
       @RequestParam(required = false, name = "file") MultipartFile file) {
-
     DocumentDto docDto = new DocumentDto();
     docDto.setDocName(docName);
     docDto.setDocTag(docTag);
     docDto.setDocType(docType);
     docDto.setMultiPartfile(file);
-
     DocumentDto savedDoc = documentService.save(docDto);
     return new ResponseEntity<DocumentDto>(savedDoc, HttpStatus.OK);
   }
