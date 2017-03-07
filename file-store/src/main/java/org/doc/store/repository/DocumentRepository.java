@@ -6,6 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 @Transactional
-public interface DocumentRepository extends BaseRepository<Document, Long> {
+public interface DocumentRepository extends BaseRepository<Document, String> {
 
 }
