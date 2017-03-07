@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 @RequestMapping("documents")
-public class DocumentControllerImpl {
+public class DocumentController {
 
   @Autowired
   private DocumentService documentService;
