@@ -3,13 +3,18 @@ package org.doc.store.service;
 import java.io.File;
 import java.util.UUID;
 
+import javax.transaction.Transactional;
+
 import org.apache.commons.beanutils.BeanUtilsBean;
 import org.doc.store.dto.DocumentDto;
 import org.doc.store.model.Document;
 import org.doc.store.repository.DocumentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+@Service
+@Transactional
 public class DocumentServiceImpl implements DocumentService {
 
   private static final String doc_folder =
