@@ -99,8 +99,7 @@ public class DocumentServiceImpl implements DocumentService {
     }
 
     String originalFileName = docDto.getMultiPartfile().getOriginalFilename();
-    if (StringUtils.isEmpty(docDto.getDocType())
-        && document.getDocName().lastIndexOf(".") != -1) {
+    if (StringUtils.isEmpty(docDto.getDocType()) && document.getDocName().lastIndexOf(".") != -1) {
       String docType = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
       document.setDocType(docType);
     } else {
@@ -113,7 +112,17 @@ public class DocumentServiceImpl implements DocumentService {
 
   @Override
   public DocumentDto find(String docUuid) {
-    return null;
+    Document docInDb = repository.findOne(docUuid);
+    DocumentDto docDtoToReturn = null;
+    if (docInDb != null) {
+      docDtoToReturn = new DocumentDto();
+      try {
+        BeanUtilsBean.getInstance().copyProperties(docDtoToReturn, docInDb);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+    return docDtoToReturn;
   }
 
 
