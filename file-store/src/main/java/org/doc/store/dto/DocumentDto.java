@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class DocumentDto {
 
-  private long uuid;
+  private String uuid;
 
   private String docName;
 
@@ -16,11 +16,11 @@ public class DocumentDto {
 
   private MultipartFile multiPartfile;
 
-  public long getUuid() {
+  public String getUuid() {
     return uuid;
   }
 
-  public void setUuid(long uuid) {
+  public void setUuid(String uuid) {
     this.uuid = uuid;
   }
 
