@@ -102,13 +102,14 @@ public class DocumentServiceImpl implements DocumentService {
 			document.setDocUrl(docPath);
 		}
 
-		String originalFileName = docDto.getMultiPartfile().getOriginalFilename();
-		if (StringUtils.isEmpty(docDto.getDocType()) && document.getDocName().lastIndexOf(".") != -1) {
-			String docType = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
-			document.setDocType(docType);
-		} else {
-			document.setDocType(docDto.getDocType());
-		}
+    String originalFileName = docDto.getMultiPartfile().getOriginalFilename();
+    if (StringUtils.isEmpty(docDto.getDocType())
+        && document.getDocName().lastIndexOf(".") != -1) {
+      String docType = originalFileName.substring(originalFileName.lastIndexOf(".") + 1);
+      document.setDocType(docType);
+    } else {
+      document.setDocType(docDto.getDocType());
+    }
 
 		document.setDocTag(docDto.getDocTag());
 		return document;
