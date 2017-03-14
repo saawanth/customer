@@ -21,46 +21,48 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 public class DocumentController {
 
-	@Autowired
-	private DocumentService documentService;
+  @Autowired
+  private DocumentService documentService;
 
-	// consumes = MediaType.MULTIPART_FORM_DATA_VALUE
-	@RequestMapping(method = RequestMethod.GET)
-	public @ResponseBody ResponseEntity<String> greeting() {
-		return new ResponseEntity<String>("Welcom to document store", HttpStatus.OK);
-	}
+  // consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+  @RequestMapping(method = RequestMethod.GET)
+  public @ResponseBody ResponseEntity<String> greeting() {
+    return new ResponseEntity<String>("Welcom to document store", HttpStatus.OK);
+  }
 
-	@RequestMapping(value = "/save",method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<DocumentDto> create(
-			@RequestParam(name = "docName", required = false) String docName,
-			@RequestParam(name = "docType", required = false) String docType,
-			@RequestParam(name = "docTag", required = false) String docTag,
-			@RequestParam(name = "file", required = false) MultipartFile file) {
-		DocumentDto docDto = new DocumentDto();
-		docDto.setDocName(docName);
-		docDto.setDocTag(docTag);
-		docDto.setDocType(docType);
-		docDto.setMultiPartfile(file);
-		DocumentDto savedDoc = documentService.save(docDto);
-		return new ResponseEntity<DocumentDto>(savedDoc, HttpStatus.OK);
-	}
+  @RequestMapping(value = "/save", method = RequestMethod.POST)
+  public @ResponseBody ResponseEntity<DocumentDto> create(
+      @RequestParam(name = "docName", required = false) String docName,
+      @RequestParam(name = "docType", required = false) String docType,
+      @RequestParam(name = "docTag", required = false) String docTag,
+      @RequestParam(name = "file", required = false) MultipartFile file) {
+    DocumentDto docDto = new DocumentDto();
+    docDto.setDocName(docName);
+    docDto.setDocTag(docTag);
+    docDto.setDocType(docType);
+    docDto.setMultiPartfile(file);
+    DocumentDto savedDoc = documentService.save(docDto);
+    return new ResponseEntity<DocumentDto>(savedDoc, HttpStatus.OK);
+  }
 
-	@RequestMapping(value = "/getfile/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ResponseEntity<DocumentDto> getFile(@PathVariable(value = "id") String id) {
-		DocumentDto documentDto = documentService.getFile(id);
-		if ((documentDto == null)) {
-			return new ResponseEntity<DocumentDto>(HttpStatus.NO_CONTENT);
-		} else
-			return new ResponseEntity<DocumentDto>(documentDto, HttpStatus.OK);
-	}
-	@RequestMapping(value = "/search", method = RequestMethod.POST,
-		      produces = "application/json", consumes = "application/json")
-		  public @ResponseBody ResponseEntity<List<DocumentDto>> searchDocuments(
-		      @RequestBody DocumentDto documentDto) {
-		    List<DocumentDto> documentDtoList = documentService.searchDocuments(documentDto);
-		    if (documentDtoList==null)
-		      return new ResponseEntity<List<DocumentDto>>(HttpStatus.NO_CONTENT);
-		    else
-		      return new ResponseEntity<List<DocumentDto>>(documentDtoList, HttpStatus.OK);
-		  }
+  @RequestMapping(value = "/getfile/{id}", method = RequestMethod.GET,
+      produces = "application/json")
+  public @ResponseBody ResponseEntity<DocumentDto> getFile(@PathVariable(value = "id") String id) {
+    DocumentDto documentDto = documentService.getFile(id);
+    if ((documentDto == null)) {
+      return new ResponseEntity<DocumentDto>(HttpStatus.NO_CONTENT);
+    } else
+      return new ResponseEntity<DocumentDto>(documentDto, HttpStatus.OK);
+  }
+
+  @RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json",
+      consumes = "application/json")
+  public @ResponseBody ResponseEntity<List<DocumentDto>> searchDocuments(
+      @RequestBody DocumentDto documentDto) {
+    List<DocumentDto> documentDtoList = documentService.searchDocuments(documentDto);
+    if (documentDtoList == null)
+      return new ResponseEntity<List<DocumentDto>>(HttpStatus.NO_CONTENT);
+    else
+      return new ResponseEntity<List<DocumentDto>>(documentDtoList, HttpStatus.OK);
+  }
 }

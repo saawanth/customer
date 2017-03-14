@@ -20,6 +20,8 @@ public class DocumentDto {
 
   private MultipartFile multiPartfile;
 
+  private byte[] content;
+
   public String getUuid() {
     return uuid;
   }
