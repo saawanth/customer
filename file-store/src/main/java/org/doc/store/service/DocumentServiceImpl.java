@@ -148,14 +148,18 @@ public class DocumentServiceImpl implements DocumentService {
   }
 
   @Override
-  public byte[] getFileStream(String docUuid) {
+  public DocumentDto getFileStream(String docUuid) {
+	  DocumentDto documentDto=new DocumentDto();
     Document document = repository.findOne(docUuid);
+    documentDto.setDocName(document.getDocName());
     File fileToRead = new File(document.getDocUrl());
     byte[] fileContentInBytes = new byte[(int) fileToRead.length()];
+    
     FileInputStream fis = null;
     try {
       fis = new FileInputStream(fileToRead);
       fis.read(fileContentInBytes);
+     
     } catch (IOException e) {
       e.printStackTrace();
     } finally {
@@ -167,7 +171,8 @@ public class DocumentServiceImpl implements DocumentService {
         }
       }
     }
-    return fileContentInBytes;
+    documentDto.setContent(fileContentInBytes);
+    return documentDto;
   }
 
 }
