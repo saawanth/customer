@@ -8,12 +8,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.routeone.interview.StoreRegister.Item.Builder;
+import com.routeone.interview.Item.Builder;
 import com.routeone.interview.util.Util;
 
 public class StoreRegister {
 
 	private final Map<String, Item> itemsMap = new HashMap<>();
+	private String inventoryFile;
+
+	private ReceiptFactory factory;
+
+	public StoreRegister() {
+	}
+
+	public StoreRegister(String inventoryFile) {
+		super();
+		this.inventoryFile = inventoryFile;
+	}
 
 	public void loadInventory(File inventoryFile) {
 		BufferedReader br = null;
@@ -31,6 +42,10 @@ public class StoreRegister {
 		} finally {
 			Util.close(br);
 		}
+	}
+
+	public void init() {
+		loadInventory(new File(inventoryFile));
 	}
 
 	private Item buildInventoryItem(String[] lineItemProps) {
@@ -51,73 +66,14 @@ public class StoreRegister {
 			}
 		}
 
-		return new StoreReceipt(receiptItems, total);
+		Receipt receipt = factory.getInstance();
+		receipt.setItems(receiptItems);
+		receipt.setTotal(total);
+
+		return receipt;
 	}
 
 	Item getItem(String itemKey) {
 		return itemsMap.get(itemKey);
-	}
-
-	public static class Item {
-
-		private String name;
-		private String category;
-		private double price;
-
-		public Item(String name, String category, double price) {
-			super();
-			this.name = name;
-			this.category = category;
-			this.price = price;
-		}
-
-		public String getName() {
-			return name;
-		}
-
-		public void setName(String name) {
-			this.name = name;
-		}
-
-		public String getCategory() {
-			return category;
-		}
-
-		public void setCategory(String category) {
-			this.category = category;
-		}
-
-		public double getPrice() {
-			return price;
-		}
-
-		public void setPrice(double price) {
-			this.price = price;
-		}
-
-		public static class Builder {
-			private String name;
-			private String category;
-			private double price;
-
-			public Builder withName(String name) {
-				this.name = name;
-				return this;
-			}
-
-			public Builder withCategory(String category) {
-				this.category = category;
-				return this;
-			}
-
-			public Builder withPrice(String priceAsStr) {
-				this.price = Double.parseDouble(priceAsStr);
-				return this;
-			}
-
-			public Item build() {
-				return new Item(name, category, price);
-			}
-		}
 	}
 }

@@ -6,15 +6,13 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.routeone.interview.StoreRegister.Item;
-
 public class StoreReceipt implements Receipt {
 
 	private static final String DEFAULT_PATTERN = "$###,###.00";
 
-	private final DecimalFormat decimalFormat;
-	private final List<Item> receiptItems;
-	private final double total;
+	private final DecimalFormat decimalFormat = new DecimalFormat(DEFAULT_PATTERN);;
+	private List<Item> receiptItems;
+	private double total;
 
 	public StoreReceipt(List<Item> receiptItems, double total, String totalPattern) {
 		super();
@@ -34,11 +32,13 @@ public class StoreReceipt implements Receipt {
 		});
 
 		this.total = total;
-		this.decimalFormat = new DecimalFormat(totalPattern);
 	}
 
 	public StoreReceipt(List<Item> receiptItems, double total) {
 		this(receiptItems, total, DEFAULT_PATTERN);
+	}
+
+	public StoreReceipt() {
 	}
 
 	@Override
@@ -53,5 +53,17 @@ public class StoreReceipt implements Receipt {
 			orderedItems.add(itm.getName());
 		}
 		return orderedItems;
+	}
+
+	@Override
+	public void setItems(List<Item> receiptItems) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setTotal(double total) {
+		// TODO Auto-generated method stub
+		
 	}
 }
