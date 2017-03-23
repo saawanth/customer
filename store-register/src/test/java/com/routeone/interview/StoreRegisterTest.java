@@ -9,7 +9,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.routeone.interview.StoreRegister.Item;
 import com.routeone.interview.util.Util;
 
 public class StoreRegisterTest {

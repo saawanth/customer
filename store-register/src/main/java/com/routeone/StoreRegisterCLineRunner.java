@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.routeone.interview.Receipt;
 import com.routeone.interview.StoreRegister;
-import com.routeone.interview.StoreRegister.Item;
 import com.routeone.interview.util.Util;
 
 public class StoreRegisterCLineRunner {
@@ -32,7 +31,7 @@ public class StoreRegisterCLineRunner {
 		checkoutItems.add("GenericMotherboard");
 		checkoutItems.add("Mouse");
 		checkoutItems.add("LCD");
-		
+
 		Receipt receipt = register.checkoutOrder(checkoutItems);
 
 		System.out.println(receipt.getFormattedTotal());

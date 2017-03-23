@@ -57,13 +57,11 @@ public class StoreReceipt implements Receipt {
 
 	@Override
 	public void setItems(List<Item> receiptItems) {
-		// TODO Auto-generated method stub
-		
+		this.receiptItems = receiptItems;
 	}
 
 	@Override
 	public void setTotal(double total) {
-		// TODO Auto-generated method stub
-		
+		this.total = total;
 	}
 }

@@ -17,12 +17,17 @@ public class StoreRegiaterSpringClineRunner {
 		List<String> checkoutItems = new ArrayList<>();
 		checkoutItems.add("PC1033");
 		checkoutItems.add("GenericMotherboard");
-////		checkoutItems.add("Mouse");
 		checkoutItems.add("LCD");
 
+		//first call
 		Receipt receipt = register.checkoutOrder(checkoutItems);
-
 		System.out.println(receipt.getFormattedTotal());
 		System.out.println(receipt.getOrderedItems());
+		
+		//2nd call
+		checkoutItems.add("PC1033");
+		Receipt receipt2 = register.checkoutOrder(checkoutItems);
+		System.out.println(receipt2.getFormattedTotal());
+		System.out.println(receipt2.getOrderedItems());
 	}
 }
