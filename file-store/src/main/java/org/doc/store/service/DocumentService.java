@@ -12,5 +12,5 @@ public interface DocumentService {
 
   List<DocumentDto> searchDocuments(DocumentDto documentDto);
 
-  byte[] getFileStream(String docUuid);
+  DocumentDto getFileStream(String docUuid);
 }
