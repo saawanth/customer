@@ -1,7 +1,12 @@
 package org.sample.data.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
+
+@Document(indexName = "elastic_sample", type = "employee")
 public class Employee {
 
+	@Id
 	private long id;
 	private String name;
 	private double salary;
