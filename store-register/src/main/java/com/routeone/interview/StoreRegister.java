@@ -16,7 +16,7 @@ public class StoreRegister {
 	private final Map<String, Item> itemsMap = new HashMap<>();
 	private String inventoryFile;
 	private Receipt singleReceipt;
-	
+
 	// private ReceiptFactory factory;
 
 	public StoreRegister() {
@@ -69,6 +69,7 @@ public class StoreRegister {
 
 		// Receipt receipt = factory.getInstance();
 		Receipt receipt = getReceipt();
+		// Receipt receipt = new StoreReceipt();
 		receipt.setItems(receiptItems);
 		receipt.setTotal(total);
 
@@ -78,7 +79,7 @@ public class StoreRegister {
 	public Receipt getReceipt() {
 		return null;
 	}
-	
+
 	public Receipt getSingleReceipt() {
 		return singleReceipt;
 	}
@@ -86,7 +87,6 @@ public class StoreRegister {
 	public void setSingleReceipt(Receipt singleReceipt) {
 		this.singleReceipt = singleReceipt;
 	}
-
 
 	Item getItem(String itemKey) {
 		return itemsMap.get(itemKey);
