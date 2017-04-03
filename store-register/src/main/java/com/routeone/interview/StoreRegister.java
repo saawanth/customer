@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +40,7 @@ public class StoreRegister {
 				inventoryLine = br.readLine();
 			}
 		} catch (Exception e) {
-			throw new RuntimeException("Unable to load the inventory Data", e);
+			throw new RuntimeException(inventoryFile.getAbsolutePath()+"Unable to load the inventory Data", e);
 		} finally {
 			Util.close(br);
 		}
@@ -91,4 +92,9 @@ public class StoreRegister {
 	Item getItem(String itemKey) {
 		return itemsMap.get(itemKey);
 	}
+	
+	public Collection<Item> getAllItems(){
+		return itemsMap.values();
+	}
+	
 }
