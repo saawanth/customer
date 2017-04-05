@@ -27,7 +27,7 @@
 
 	 <bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/" />
+		<property name="prefix" value="/JSP/" />
 		<property name="suffix" value=".jsp" />
 	</bean> 
    <bean id="register" class="com.routeone.interview.StoreRegister"
