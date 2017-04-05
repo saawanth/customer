@@ -1,6 +1,25 @@
 <web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	version="3.0">
+	
+		<!-- This context parameter is the way we indicates to Spring where it has 
+		to find its configuration files -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<!-- A word on the classpath"*": without the star, Spring class loader 
+			will only search in the project files and no in the jars. It has to be known 
+			or it can be a long search before understanding why configuration files are 
+			not red. With the "classpath*:" all files with the right name in any jar 
+			will match. It changes nothing in this example but it's an excuse to explain 
+			it -->
+		<param-value>			
+			/WEB-INF/spring-service.xml
+		</param-value>
+	</context-param>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
 
 	<!-- Spring MVC entry point is a "dispatcher" servlet -->
 	<servlet>

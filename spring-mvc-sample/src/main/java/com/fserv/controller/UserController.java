@@ -1,9 +1,10 @@
-package com.fserv.web.controller;
+package com.fserv.controller;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -12,13 +13,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.fserv.web.model.User;
-import com.fserv.web.service.UserService;
+import com.fserv.model.User;
+import com.fserv.service.UserService;
 
 @Controller
 public class UserController {
 
   @Autowired
+  @Qualifier("userJdbcServiceImpl")
   UserService userService;
 
   @RequestMapping(value = "/userHome", method = RequestMethod.GET)

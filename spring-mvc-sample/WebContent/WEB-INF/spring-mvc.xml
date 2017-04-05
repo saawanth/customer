@@ -24,8 +24,7 @@
 	<!-- The component scanning will discover all controllers by filtering on 
 		the annotation -->
 		
-	<context:component-scan base-package="com.fserv.web.service.**" />
-	<context:component-scan base-package="com.fserv.web.controller.**" />
+	<context:component-scan base-package="com.fserv.controller.**" />
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

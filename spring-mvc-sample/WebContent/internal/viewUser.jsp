@@ -22,6 +22,11 @@
 				<td><form:label path="contactNumber">Contact Number</form:label></td>
 				<td><form:input path="contactNumber" readonly="true"/></td>
 			</tr>
+			
+			<tr>
+				<td><form:input path="contactNumber" readonly="true"/></td>
+			</tr>	
+			
 		</table>
 	</form:form>
 

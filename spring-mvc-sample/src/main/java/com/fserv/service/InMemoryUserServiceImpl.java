@@ -1,16 +1,16 @@
-package com.fserv.web.service;
+package com.fserv.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.fserv.web.model.User;
+import com.fserv.model.User;
 
-@Component
-public class UserServiceImpl implements UserService {
+@Service
+public class InMemoryUserServiceImpl implements UserService {
 
   private final AtomicInteger userIdCounter = new AtomicInteger(1);
   private ConcurrentHashMap<Integer, User> usersMap = new ConcurrentHashMap<>();

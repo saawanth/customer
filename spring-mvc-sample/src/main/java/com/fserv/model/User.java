@@ -1,4 +1,4 @@
-package com.fserv.web.model;
+package com.fserv.model;
 
 public class User {
 

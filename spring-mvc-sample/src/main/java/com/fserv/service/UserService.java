@@ -1,8 +1,8 @@
-package com.fserv.web.service;
+package com.fserv.service;
 
 import java.util.List;
 
-import com.fserv.web.model.User;
+import com.fserv.model.User;
 
 public interface UserService {
 
