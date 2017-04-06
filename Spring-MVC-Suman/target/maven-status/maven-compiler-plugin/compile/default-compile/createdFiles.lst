@@ -1,0 +1,9 @@
+com\SpringMVC\Model\Movies.class
+com\SpringMVC\DOA\MovieDoa.class
+com\SpringMVC\ServiceImpl\UserService.class
+com\SpringMVC\DOA\DoaUserInterface.class
+com\SpringMVC\DOAImpl\MovieDoaImpl.class
+com\SpringMVC\Service\Service.class
+com\SpringMVC\ControllerHome.class
+com\SpringMVC\DOAImpl\UserDoaImpl.class
+com\SpringMVC\Model\User.class
