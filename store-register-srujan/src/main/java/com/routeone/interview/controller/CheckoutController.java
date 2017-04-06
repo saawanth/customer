@@ -33,23 +33,21 @@ public class CheckoutController {
 	
 	@RequestMapping(value="/checkout")
 	private ModelAndView checkoutPage() {
-	ModelAndView mav = new ModelAndView("checkoutItems");
 	 
 	List<String> checkItems = new ArrayList<>();
 	for ( Item item : register.getAllItems()){
 		checkItems.add(item.getName());
 	}
 	 
-	mav.addObject("itemsList", checkItems);
-	mav.addObject("items", new CheckList());
-	 
+	//mav.addObject("itemsList", checkItems); // display in form
+	ModelAndView mav = new ModelAndView("checkoutItems", "items", new CheckList(checkItems));
 	return mav;
 	}
 	 
 	@RequestMapping(value="/success")
 	private ModelAndView processTeams(@ModelAttribute CheckList items) {
 	ModelAndView mav = new ModelAndView("success");
-	Receipt receipt = register.checkoutOrder(items.getItemsList());
+	Receipt receipt = register.checkoutOrder(items.getSelectedItems());
 	mav.addObject("receipt", receipt);
 	return mav;
 	}

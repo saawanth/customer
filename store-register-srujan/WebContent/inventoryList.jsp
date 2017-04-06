@@ -14,5 +14,6 @@
 			${item.name} : $${item.price} : ${item.category}
 		</p>
 	</c:forEach>
+<a href="index.html" class="btn">Go Home..</a>
 </body>
 </html>

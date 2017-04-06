@@ -11,12 +11,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form:form method="POST" commandName="items" action="success">
+<form:form method="POST" modelAttribute="items" action="success">
 <table>
     <tr>
     <td>
 <ul>
-<form:checkboxes element="li" path="itemsList" items="${itemsList}"/>
+<form:checkboxes element="li" path="selectedItems" items="${items.allItems}"/>
 </ul>
     </td>
     </tr>
