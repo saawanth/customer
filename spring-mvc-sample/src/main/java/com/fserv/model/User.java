@@ -1,33 +1,17 @@
 package com.fserv.model;
 
-public class User {
+public interface User {
 
-  private Integer id;
-  private String name;
-  private String contactNumber;
+  public Integer getId();
 
-  public Integer getId() {
-    return id;
-  }
+  public void setId(Integer id);
 
-  public void setId(Integer id) {
-    this.id = id;
-  }
+  public String getName();
 
-  public String getName() {
-    return name;
-  }
+  public void setName(String name);
 
-  public void setName(String name) {
-    this.name = name;
-  }
+  public String getContactNumber();
 
-  public String getContactNumber() {
-    return contactNumber;
-  }
-
-  public void setContactNumber(String contactNumber) {
-    this.contactNumber = contactNumber;
-  }
+  public void setContactNumber(String contactNumber);
 
 }

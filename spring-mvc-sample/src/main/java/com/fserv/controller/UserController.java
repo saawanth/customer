@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fserv.jpa.model.UserJpa;
 import com.fserv.model.User;
 import com.fserv.service.UserService;
 
@@ -25,15 +26,15 @@ public class UserController {
 
   @RequestMapping(value = "/userHome", method = RequestMethod.GET)
   public ModelAndView home() {
-    Map<String, User> model = new HashMap<>();
-    model.put("user", new User());
+    Map<String, UserJpa> model = new HashMap<>();
+    model.put("user", new UserJpa());
     ModelAndView modelView = new ModelAndView("createUser", model);
     return modelView;
   }
 
   @RequestMapping(value = "/addUser", method = RequestMethod.POST)
-  public ModelAndView addUser(@ModelAttribute("user") final User user, final BindingResult result,
-      final ModelMap model) {
+  public ModelAndView addUser(@ModelAttribute("user") final UserJpa user,
+      final BindingResult result, final ModelMap model) {
     User savedUser = userService.createUser(user);
 
     Map<String, User> userModel = new HashMap<>();

@@ -3,15 +3,17 @@ package com.fserv.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.fserv.model.User;
 import com.fserv.repo.UserRepo;
 
 @Service
-public class UserJdbcServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
   @Autowired
+  @Qualifier("userJpaRepo")
   private UserRepo userRepo;
 
   public User createUser(User user) {
