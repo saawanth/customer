@@ -2,16 +2,16 @@ package com.fserv.model;
 
 public interface User {
 
-  public Integer getId();
+  public String getUsername();
 
-  public void setId(Integer id);
+  public void setUsername(String username);
 
   public String getName();
 
   public void setName(String name);
 
-  public String getContactNumber();
+  public Long getContactNumber();
 
-  public void setContactNumber(String contactNumber);
+  public void setContactNumber(Long contactNumber);
 
 }

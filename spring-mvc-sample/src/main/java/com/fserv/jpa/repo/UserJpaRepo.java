@@ -32,7 +32,6 @@ public class UserJpaRepo implements UserRepo {
   @Override
   public List<User> findAll() {
     Query q = entityManager.createQuery("SELECT x FROM UserJpa x ");
-    // jdbcTemplate.query
     return q.getResultList();
   }
 

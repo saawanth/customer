@@ -8,40 +8,72 @@ import javax.persistence.Table;
 import com.fserv.model.User;
 
 @Entity
-@Table(name = "users")
+@Table(name = "my_users")
 public class UserJpa implements User {
 
-  @Id()
-  private Integer id;
+  @Id
+  private String username;
 
-  @Column
-  private String name;
+  @Column(name = "first_name")
+  private String firstName;
 
-  @Column(name = "contact_number")
-  private String contactNumber;
+  @Column(name = "email")
+  private String email;
 
-  public Integer getId() {
-    return id;
+  public String getUsername() {
+    return username;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public Long getCellPhoneNumber() {
+    return cellPhoneNumber;
+  }
+
+  public void setCellPhoneNumber(Long cellPhoneNumber) {
+    this.cellPhoneNumber = cellPhoneNumber;
+  }
+
+  @Column(name = "cell_phone_number")
+  private Long cellPhoneNumber;
+
+  @Override
   public String getName() {
-    return name;
+    return firstName;
   }
 
+  @Override
   public void setName(String name) {
-    this.name = name;
+    this.firstName = name;
   }
 
-  public String getContactNumber() {
-    return contactNumber;
+  @Override
+  public Long getContactNumber() {
+    return this.cellPhoneNumber;
   }
 
-  public void setContactNumber(String contactNumber) {
-    this.contactNumber = contactNumber;
+  @Override
+  public void setContactNumber(Long contactNumber) {
+    this.cellPhoneNumber = contactNumber;
   }
+
 
 }

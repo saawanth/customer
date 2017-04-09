@@ -2,16 +2,16 @@ package com.fserv.model;
 
 public class UserJdbc implements User {
 
-  private Integer id;
+  private String username;
   private String name;
-  private String contactNumber;
+  private Long contactNumber;
 
-  public Integer getId() {
-    return id;
+  public String getUsername() {
+    return username;
   }
 
-  public void setId(Integer id) {
-    this.id = id;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public String getName() {
@@ -22,11 +22,11 @@ public class UserJdbc implements User {
     this.name = name;
   }
 
-  public String getContactNumber() {
+  public Long getContactNumber() {
     return contactNumber;
   }
 
-  public void setContactNumber(String contactNumber) {
+  public void setContactNumber(Long contactNumber) {
     this.contactNumber = contactNumber;
   }
 

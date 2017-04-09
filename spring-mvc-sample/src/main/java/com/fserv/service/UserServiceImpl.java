@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fserv.model.User;
 import com.fserv.repo.UserRepo;
 
 @Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
   @Autowired
@@ -17,8 +19,6 @@ public class UserServiceImpl implements UserService {
   private UserRepo userRepo;
 
   public User createUser(User user) {
-    // user.setId(userIdCounter.getAndIncrement());
-    // usersMap.put(user.getId(), user);
     return userRepo.save(user);
   }
 

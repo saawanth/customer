@@ -21,7 +21,7 @@ import com.fserv.service.UserService;
 public class UserController {
 
   @Autowired
-  @Qualifier("userJdbcServiceImpl")
+  @Qualifier("userServiceImpl")
   UserService userService;
 
   @RequestMapping(value = "/userHome", method = RequestMethod.GET)

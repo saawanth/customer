@@ -11,13 +11,15 @@
 	<form:form modelAttribute="user">
 		<table>
 			<tr>
+				<td><form:label path="username">Username</form:label></td>
+				<td><form:input path="username" readonly="true"/></td>
+			</tr>
+			
+			<tr>
 				<td><form:label path="name">Name</form:label></td>
 				<td><form:input path="name" readonly="true"/></td>
 			</tr>
-			<tr>
-				<td><form:label path="id">Id</form:label></td>
-				<td><form:input path="id" readonly="true"/></td>
-			</tr>
+
 			<tr>
 				<td><form:label path="contactNumber">Contact Number</form:label></td>
 				<td><form:input path="contactNumber" readonly="true"/></td>

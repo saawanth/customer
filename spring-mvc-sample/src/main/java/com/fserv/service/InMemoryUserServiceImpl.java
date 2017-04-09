@@ -3,7 +3,6 @@ package com.fserv.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
 
@@ -12,12 +11,10 @@ import com.fserv.model.User;
 @Service
 public class InMemoryUserServiceImpl implements UserService {
 
-  private final AtomicInteger userIdCounter = new AtomicInteger(1);
-  private ConcurrentHashMap<Integer, User> usersMap = new ConcurrentHashMap<>();
+  private ConcurrentHashMap<String, User> usersMap = new ConcurrentHashMap<>();
 
   public User createUser(User user) {
-    user.setId(userIdCounter.getAndIncrement());
-    usersMap.put(user.getId(), user);
+    usersMap.put(user.getUsername(), user);
 
     return user;
   }
