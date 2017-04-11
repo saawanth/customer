@@ -10,6 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.fserv.model.User;
 import com.fserv.repo.UserRepo;
 
+//------transaction - 1 started -------
+//-complete unit of work in transaciton
+//-------transaction - 1 ended   ---------
+
+//------transaction - 2 started -------
+//complete unit of work in transaciton
+//------transaction - 1 ended   ---------
+
+
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {

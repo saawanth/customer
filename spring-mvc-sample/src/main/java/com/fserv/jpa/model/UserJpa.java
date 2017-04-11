@@ -1,8 +1,13 @@
 package com.fserv.jpa.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fserv.model.User;
@@ -12,6 +17,7 @@ import com.fserv.model.User;
 public class UserJpa implements User {
 
   @Id
+  @Column(name = "username")
   private String username;
 
   @Column(name = "first_name")
@@ -19,6 +25,17 @@ public class UserJpa implements User {
 
   @Column(name = "email")
   private String email;
+
+  @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  List<UserAddress> userAddresses;
+
+  public List<UserAddress> getUserAddresses() {
+    return userAddresses;
+  }
+
+  public void setUserAddresses(List<UserAddress> userAddresses) {
+    this.userAddresses = userAddresses;
+  }
 
   public String getUsername() {
     return username;
