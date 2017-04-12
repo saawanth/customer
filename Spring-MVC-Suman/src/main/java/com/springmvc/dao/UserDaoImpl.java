@@ -24,12 +24,12 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public String find(String username) {
+	public User find(String username) {
 		String user = username;
-		//entityManager.find(User.class, username);
+	User user1=entityManager.find(User.class, username);
 		
 
-		return null;
+		return user1;
 	}
 
 }

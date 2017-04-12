@@ -8,5 +8,5 @@ public interface UserService {
 	HashMap<String,User> hmap=new HashMap<String,User>();
 	void insert(User user);
 
-	public String find(String username);
+	public User find(String username);
 }

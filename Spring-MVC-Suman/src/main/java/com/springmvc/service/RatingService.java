@@ -1,9 +1,10 @@
 package com.springmvc.service;
 
-import com.springmvc.model.Ratings;
+import com.springmvc.model.Rating;
 
 public interface RatingService {
 
-	 void insert(Ratings rating);
+	 void insert(Rating rating);
+	 
 	
 }

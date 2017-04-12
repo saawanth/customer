@@ -1,7 +1,9 @@
 package com.springmvc.dao;
 
-import com.springmvc.model.Ratings;
+import com.springmvc.model.Rating;
+import com.springmvc.model.User;
 
 public interface RatingDao {
-	 void insert(Ratings rating);
+	 void insert(Rating rating);
+	 User find(String username);
 }

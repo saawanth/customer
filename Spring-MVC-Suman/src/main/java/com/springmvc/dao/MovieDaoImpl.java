@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.springmvc.dao.MovieDao;
-import com.springmvc.model.Movies;
+import com.springmvc.model.Movie;
 
 @Transactional
 public class MovieDaoImpl implements MovieDao{
@@ -23,20 +23,20 @@ public class MovieDaoImpl implements MovieDao{
 
 
 	@Override
-	public void insert(Movies movie) {
+	public void insert(Movie movie) {
 	
 		entityManager.persist(movie);
 	}
 
 	@Override
-	public List<Movies> find(String username) {
+	public Movie find(int mid) {
 	//	String user;
-		String sql="from Movies m where username= :username";
+		String sql="from Movie m where mid=:mid";
 		Query query=entityManager.createQuery(sql);
 		
-		query.setParameter("username",username);
-		List<Movies> list=query.getResultList();
-		return list;
+		query.setParameter("mid",mid);
+		Movie movie=(Movie) query.getSingleResult();
+		return movie;
 	}
 	
 }

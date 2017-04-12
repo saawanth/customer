@@ -8,5 +8,5 @@ public interface UserDao {
 
 	void insert(User user);
 
-	public String find(String username);
+	public User find(String username);
 }

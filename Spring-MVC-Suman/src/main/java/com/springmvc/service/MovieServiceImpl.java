@@ -5,22 +5,22 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.springmvc.dao.MovieDao;
-import com.springmvc.model.Movies;
+import com.springmvc.model.Movie;
 
 public class MovieServiceImpl implements MovieService {
 	@Autowired
 	MovieDao movieDao;
 
 	@Override
-	public void insert(Movies movie) {
+	public void insert(Movie movie) {
 		movieDao.insert(movie);
 		
 	}
 
 	@Override
-	public List<Movies> find(String moviename) {
-		return movieDao.find(moviename);
-		
+	public Movie find(int mid) {
+		return movieDao.find(mid);
+	
 	}
 
 	
