@@ -20,7 +20,6 @@ public class UserJpaRepo implements UserRepo {
 
   public User save(User user) {
     entityManager.persist(user);
-    entityManager.pe
     return user;
   }
 

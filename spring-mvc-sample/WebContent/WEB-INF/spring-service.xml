@@ -54,6 +54,7 @@
 		<constructor-arg name="dataSource" ref="dataSource" />
 	</bean>
 
+	<context:component-scan base-package="com.fserv.dto.helper.**" />
 	<context:component-scan base-package="com.fserv.repo.**" />
 	<context:component-scan base-package="com.fserv.service.**" />
 
