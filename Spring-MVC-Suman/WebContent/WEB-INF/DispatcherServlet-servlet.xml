@@ -1,47 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:c="http://www.springframework.org/schema/c"
-	xmlns:p="http://www.springframework.org/schema/p" xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<mvc:annotation-driven />
-	<mvc:default-servlet-handler />
+        http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<mvc:default-servlet-handler/>
+<mvc:annotation-driven/> 
 
 	<context:annotation-config />
 
-	<!-- The component scanning will discover all controllers by filtering on 
-		the annotation -->
-	<context:component-scan base-package="com.SpringMVC" />
+	<context:component-scan base-package="com.springmvc" />
+	<context:component-scan base-package="com.springmvc.model" />
+	<bean id="userDaoImpl" class="com.springmvc.dao.UserDaoImpl">
+	</bean>
 
+	<bean id="movieDaoImpl" class="com.springmvc.dao.MovieDaoImpl">
+	</bean>
+	<bean id="movieServiceImpl" class="com.springmvc.service.MovieServiceImpl">
+	</bean>
+<bean id="ratingDaoImpl" class="com.springmvc.dao.RatingDaoImpl">
+	</bean>
+	<bean id="ratingServiceImpl" class="com.springmvc.service.RatingServiceImpl">
+	</bean>
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/JSP/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
-	<bean id="UserDoaImpl" class="com.SpringMVC.DOAImpl.UserDoaImpl">
-	<property name="dataSource" ref="dataSource"></property>
+	
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-<bean id="MovieDoaImpl" class="com.SpringMVC.DOAImpl.MovieDoaImpl">
-	<property name="dataSource" ref="dataSource"></property>
-	</bean>
-<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
-    <property name="dataSource" ref="dataSource"/>
-</bean>
 
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3307/movie_store" />
+		<property name="url" value="jdbc:mysql://localhost:3307/store" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>
 
-	<bean id="service" class="com.SpringMVC.ServiceImpl.UserService"></bean>
+	<bean id="userService" class="com.springmvc.service.UserServiceImpl"></bean>
 
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+		<context:component-scan base-package="com.springmvc.dao" />
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan" value="com.springmvc.model" />
+		<property name="jpaVendorAdapter" ref="jpaHibernateAdapter" />
+		<property name="jpaDialect" ref="jpaHibernateDialect" />
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.connection.autocommit">false</prop>
+				<prop key="hibernate.hbm2ddl.show_sql">true</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="jpaHibernateAdapter"
+		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+
+	<bean id="jpaHibernateDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+
+	<bean id="jpaTransactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean>
+	
+	<tx:annotation-driven proxy-target-class="true" transaction-manager="jpaTransactionManager"/>
+	
+
+	
+	<!--End of JPA Configuraiotn -->
 
 </beans>
