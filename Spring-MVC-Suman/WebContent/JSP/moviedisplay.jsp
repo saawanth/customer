@@ -10,7 +10,7 @@
 Movie details
 <h1>following details are added to the database</h1><br>
 ${movie.moviename }<br>
-${movie.username}<br>
+
 ${movie.genre }<br>
 <a href="index.html">Click here to go to index</a>
 </body>
