@@ -14,7 +14,7 @@ Enter the details of the movie name you watched
 </form>
 <br>
 <h1>Enter movies </h1>
-<form name="form3" method="post" action="moviedetails" >
+<form name="form3" method="post" action="moviedetails" modelAttribute="movie" >
 
 <font size=5 color='blue'>Movie name:</font><input type="text" name="moviename" ><br>
 <font size=5 color='blue'>Genre:</font><input type="text" name="genre" ><br>
@@ -26,7 +26,7 @@ Enter the details of the movie name you watched
 
 </form>
 <h1>Enter Rating for a movie</h1>
-<form name="form4" method="post" action="ratingfunc" >
+<form name="form4" method="post" modelAttribute="user" action="ratingfunc" >
 
 <font size=5 color='blue'>Mid</font><input type="text" name="mid" ><br>
 

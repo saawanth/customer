@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springmvc.dao.MovieDao;
 import com.springmvc.dao.UserDao;
+import com.springmvc.dto.MovieDto;
+import com.springmvc.dto.UserDto;
+import com.springmvc.dtohelper.DtoHelper;
+import com.springmvc.dtohelper.MovieDtoHelper;
 import com.springmvc.model.Movie;
 import com.springmvc.model.Rating;
 import com.springmvc.model.User;
@@ -32,11 +36,18 @@ UserService userService;
 	MovieService movieService;
 	@Autowired
 	RatingService ratingService;
+	@Autowired
+	DtoHelper dtoHelper;
+	@Autowired
+	MovieDtoHelper movieDtoHelper;
+	
 	 
 
 	@RequestMapping(value = "home", method = RequestMethod.POST)
-	public String home(User user, ModelMap model) {
-		userService.insert(user);
+	public String home(@ModelAttribute("user") UserDto userDto, ModelMap model) {
+		
+		User user=(User) dtoHelper.dtoToModel(userDto);
+	userService.insert(user);
 		model.put("name", user.getName());
 
 		model.put("age", user.getAge());
@@ -46,7 +57,8 @@ UserService userService;
 	}
 
 	@RequestMapping(value = "moviedetails", method = RequestMethod.POST)
-	public String moviedetails(@ModelAttribute("movie") Movie movie, ModelMap model) {
+	public String moviedetails(@ModelAttribute("movie") MovieDto movieDto, ModelMap model) {
+		Movie movie=(Movie) movieDtoHelper.dtoToModel(movieDto);
 		movieService.insert(movie);
 		model.put("name", movie);
 
