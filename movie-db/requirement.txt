@@ -1,0 +1,27 @@
+DB:
+Create a data model that fulfills the following requirements
+•      Track users, movies, and movie ratings by users
+•      Think through the modeling exercise and decide what tables fields will be useful/required
+•      Save the DDL for the database to a file called "ddl.sql".
+•      Populate each of the tables with some sample data, save these inserts in a file called "sample_data.sql". Read the queries below as they will require certain sample data to be populated.
+
+REST API'S:
+Using Java/Spring, write RESTful API methods that return the following. We will evaluate based on correctness of results and coding style.
+Build the following Rest API's with crud operations for 
+1. Users, 
+/users-GET- find all users
+/users/{userid}/-GET- will get the user with the given id
+/users-POST- with request body of user json should create a new user in the system.
+/users/{userid}-PUT- with request body of user json should update an existing user, if its not available create new user.
+/users/{userid}-PATCH- with request body should have the incremental changes in user json that needs to be updated.
+/users/{userid}/-DELETE- will delete the user from the backend.
+/users/search/-GET-Take the search criteria as request parameters.
+ Sample:
+/users/search/?contactno=5713458098&email=reddyrk82@gmail.com
+
+2. Similar to the above build REST API's for Movies and Ratings.
+
+3. Build the following also as REST API's
+• Given a userId, return all movies that user has watched and the total count, as well as the rating for that movie.
+• Given a parameter of "movieId", return its average rating.
+• Given a genre such as "action" and a userId, return the top 5 movies for that genre by average rating, where the rating was made by other users within 5 years (older and younger) of the user's age.
