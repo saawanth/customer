@@ -2,10 +2,10 @@ package com.springmvc.service;
 
 import java.util.List;
 
-import com.springmvc.model.Movies;
+import com.springmvc.model.Movie;
 
 public interface MovieService {
-	public void insert(Movies movie);
+	public void insert(Movie movie);
 
-	public List<Movies> find(String moviename);
+	public Movie find(int mid);
 }

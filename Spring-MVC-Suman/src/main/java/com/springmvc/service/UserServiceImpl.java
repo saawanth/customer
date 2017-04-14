@@ -21,7 +21,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public String find(String username) {
+	public User find(String username) {
 	return userDao.find(username);
 		
 	}
