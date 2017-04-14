@@ -23,6 +23,9 @@ public class UserJpa implements User {
   @Column(name = "first_name")
   private String firstName;
 
+  @Column(name = "last_name")
+  private String lastName;
+
   @Column(name = "email")
   private String email;
 
@@ -92,5 +95,11 @@ public class UserJpa implements User {
     this.cellPhoneNumber = contactNumber;
   }
 
+  public String getLastName() {
+    return lastName;
+  }
 
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 }

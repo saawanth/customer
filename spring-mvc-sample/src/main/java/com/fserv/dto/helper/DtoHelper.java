@@ -7,3 +7,4 @@ public interface DtoHelper<D, M> {
   public D modelToDto(M model);
 
 }
+  
