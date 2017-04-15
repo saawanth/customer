@@ -29,10 +29,13 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	</bean>
 	<bean id="userDtoHelperImpl" class="com.springmvc.dtohelper.UserDtoHelperImpl">
 	</bean>
+		<bean id="ratingDtoHelperImpl" class="com.springmvc.dtohelper.RatingDtoHelperImpl">
+	</bean>
 		<bean id="movieDtoHelperImpl" class="com.springmvc.dtohelper.MovieDtoHelperImpl">
 	</bean>
 	<bean id="movieServiceImpl" class="com.springmvc.service.MovieServiceImpl">
 	</bean>
+	
 <bean id="ratingDaoImpl" class="com.springmvc.dao.RatingDaoImpl">
 	</bean>
 	<bean id="ratingServiceImpl" class="com.springmvc.service.RatingServiceImpl">

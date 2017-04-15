@@ -18,9 +18,15 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public Movie find(int mid) {
-		return movieDao.find(mid);
+	public List<Movie> find(String moviename) {
+		return movieDao.find(moviename);
 	
+	}
+
+	@Override
+	public Movie find(int mid) {
+		
+		return movieDao.find(mid);
 	}
 
 	

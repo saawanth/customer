@@ -15,8 +15,11 @@ public class UserDtoHelperImpl implements DtoHelper<User,UserDto> {
 
 	@Override
 	public UserDto modelToDto(User model) {
+		UserDto userDto=new UserDto();
+		userDto.setName(model.getName());
+		userDto.setAge(model.getAge());
 		
-		return null;
+		return userDto;
 	}
 
 

@@ -5,6 +5,19 @@
 <title>Movie Store</title>
 </head>
 <body>
+
+
+<form name="form5" method="post" action="search"  >
+
+<font size=5 color='blue'>Search:</font><input type="text" name="moviename" ><br>
+
+<input type="submit" value="Search">
+
+
+</form>
+
+<br>
+<br>
 Enter the details of the movie name you watched
 <form name="form1" method="post" action="home" >
 <font size=5 color='blue'>Username:</font><input type="text" name="name" ><br>
@@ -26,7 +39,7 @@ Enter the details of the movie name you watched
 
 </form>
 <h1>Enter Rating for a movie</h1>
-<form name="form4" method="post" modelAttribute="user" action="ratingfunc" >
+<form name="form4" method="post" modelAttribute="rating" action="ratingfunc" >
 
 <font size=5 color='blue'>Mid</font><input type="text" name="mid" ><br>
 
@@ -40,5 +53,11 @@ Enter the details of the movie name you watched
 <font size=5 color='blue'>Username:</font><input type="text" name="username" ><br>
 
 <input type="submit" value="find">
+
+
+
+
+
+
 </body>
 </html>

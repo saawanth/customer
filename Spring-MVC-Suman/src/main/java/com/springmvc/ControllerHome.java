@@ -5,20 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.RestController;
 
 import com.springmvc.dao.MovieDao;
 import com.springmvc.dao.UserDao;
 import com.springmvc.dto.MovieDto;
+import com.springmvc.dto.RatingDto;
 import com.springmvc.dto.UserDto;
 import com.springmvc.dtohelper.DtoHelper;
 import com.springmvc.dtohelper.MovieDtoHelper;
+import com.springmvc.dtohelper.RatingDtoHelper;
 import com.springmvc.model.Movie;
 import com.springmvc.model.Rating;
 import com.springmvc.model.User;
@@ -26,8 +32,7 @@ import com.springmvc.service.MovieService;
 import com.springmvc.service.RatingService;
 import com.springmvc.service.UserService;
 
-@Controller
-@RequestMapping("/")
+@RestController
 public class ControllerHome {
 	ArrayList<Rating> rates = null;
 	@Autowired
@@ -40,6 +45,68 @@ UserService userService;
 	DtoHelper dtoHelper;
 	@Autowired
 	MovieDtoHelper movieDtoHelper;
+	@Autowired
+	RatingDtoHelper ratingDtoHelper;
+	
+	
+	
+
+	
+
+	@RequestMapping(value="/users",method = RequestMethod.GET)
+	public List<UserDto> findAll() {
+		
+		
+		List<User> users=userService.findAll();
+		List<UserDto> userDtos=new ArrayList();
+		for(User user:users){
+			userDtos.add((UserDto) dtoHelper.modelToDto(user));
+		}
+		return userDtos;
+		
+
+	}
+	
+	@RequestMapping(value="/users/{username}" ,method = RequestMethod.GET)
+	public UserDto findUser(@PathVariable("username") String userName) {
+		
+		
+		User user=userService.find(userName);
+		userService.delete(user);
+		UserDto userDto=(UserDto) dtoHelper.modelToDto(user);
+	
+		return userDto;
+		
+
+	}
+	
+	
+	@RequestMapping(value="updateUser/{username}", method = RequestMethod.PUT)
+	public ResponseEntity<UserDto> createUser(@PathVariable("username") String userName, @RequestBody final UserDto userDto) {
+		
+		
+		User user=userService.find(userName);
+		user.setAge(userDto.getAge());
+		
+		userService.update(user);
+		return new ResponseEntity<>(userDto,HttpStatus.OK);
+
+	}
+
+
+
+	@RequestMapping(value="createUser", method = RequestMethod.POST)
+	public ResponseEntity<UserDto> createUser(@RequestBody final UserDto userDto) {
+		
+		User user=(User) dtoHelper.dtoToModel(userDto);
+	userService.insert(user);
+UserDto usrDto1	= (UserDto) dtoHelper.modelToDto(user);
+		
+		return new ResponseEntity<>(usrDto1,HttpStatus.OK);
+
+	}
+
+	
 	
 	 
 
@@ -67,18 +134,19 @@ UserService userService;
 	}
 
 	@RequestMapping(value = "ratingfunc", method = RequestMethod.POST)
-	public String ratingfunc(@RequestParam("mid") int mid,@RequestParam("rate") int rate,@RequestParam("username") String username, ModelMap model) {
+	public String ratingfunc(@ModelAttribute("rating") RatingDto ratingDto, ModelMap model) {
 		
-		Rating rating=new Rating();
-		User user2=userService.find(username);
-		Movie movie2=movieService.find(mid);
-		rating.setUser(user2);
-		rating.setMovie(movie2);
-		rating.setRate(rate);
+		Rating rating=(Rating) ratingDtoHelper.dtoToModel(ratingDto);
+		User user=userService.find(ratingDto.getUsername());
+		rating.setUser(user);
+		Movie movie=movieService.find(ratingDto.getMid());
+		rating.setMovie(movie);
+		
 		ratingService.insert(rating);
+		
 		model.put("rating", rating.getRate());
-		model.put("username", username);
-		model.put("mid", mid);
+		model.put("username", ratingDto.getUsername());
+		model.put("mid",ratingDto.getMid());
 		
 
 		
@@ -88,20 +156,20 @@ UserService userService;
 	}
 	
 	
-	/*@RequestMapping(value = "find", method = RequestMethod.POST)
-	public String find(@RequestParam("username") String username, ModelMap model) {
+	@RequestMapping(value = "search", method = RequestMethod.POST)
+	public String find(@RequestParam("moviename") String moviename, ModelMap model) {
 
-		if (username.equals("") || username == null) {
+		if (moviename.equals("") ||moviename == null) {
 			return "error";
 		} else {
-			List<Movie> movies = movieService.find(username);
+			List<Movie> movies = movieService.find(moviename);
 			
-			model.put("movie", movies);
+			model.put("movies", movies);
 		
 		}
-		return "display";
+		return "displaySearch";
 	}
-	*/
+	
 
 
 }

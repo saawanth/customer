@@ -3,14 +3,12 @@ package com.springmvc.dto;
 
 
 public class RatingDto {
+	
+	private int rate;
+	private String username;
+	private int mid;
 
-	private int id;
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public int getRate() {
 		return rate;
 	}
@@ -29,8 +27,6 @@ public class RatingDto {
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-	private int rate;
-	private String username;
-	private int mid;
+	
 
 }

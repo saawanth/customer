@@ -8,7 +8,7 @@ import com.springmvc.model.Rating;
 
 public class UserDto {
 
-	@Id
+	
 	private String name;
 	private int age;
 	private List<Rating> ratings;
