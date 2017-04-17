@@ -49,5 +49,11 @@ public class MovieServiceImpl implements MovieService {
 	public Movie delete(int mid) {
 		return movieDao.delete(mid);
 	}
+
+	@Override
+	public List<Movie> findMovieByGenre(String genre) {
+		
+		return movieDao.findMovieByGenre(genre);
+	}
 	
 }

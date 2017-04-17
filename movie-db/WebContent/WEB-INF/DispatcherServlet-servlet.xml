@@ -55,7 +55,7 @@ http://www.springframework.org/schema/mvc/spring-mvc.xsd
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/movie_store" />
+		<property name="url" value="jdbc:mysql://localhost:3307/store" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean>

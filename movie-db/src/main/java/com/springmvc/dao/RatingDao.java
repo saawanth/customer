@@ -15,11 +15,15 @@ public interface RatingDao {
 	 
 	 List<Rating> findAll();
 	 
-	 Rating findRating(Integer mid);
+	 List<Rating> findRating(Integer mid);
 	 
 	 void update(Rating rating);
 	 
 	 Rating findRatingById(Integer rid);
 	
 	 void delete(Rating rating);
+
+	List<Rating> findRatingByUsername(String userName);
+
+	List<Movie> findMovieByGenreId(String genre);
 }

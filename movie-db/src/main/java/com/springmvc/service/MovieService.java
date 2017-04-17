@@ -21,4 +21,6 @@ public interface MovieService {
 	public Movie update(Movie movie);
 	
 	public Movie delete(int mid);
+
+	public List<Movie> findMovieByGenre(String genre);
 }

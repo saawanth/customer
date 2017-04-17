@@ -51,11 +51,21 @@ public class MovieRestController {
 	}
 	
 	@RequestMapping(value = "/movies/{mid}", method = RequestMethod.GET)
-	public MovieDto findMovie(@PathVariable("mid") int mid) {
+	public int findMovie(@PathVariable("mid") int mid) {
+		
+		List<Rating> ratings= ratingService.findRating(mid);
+		
+		int temp=0;
+		for(Rating rating:ratings){
+			temp=rating.getRate()+temp;
+		}
+		int size=ratings.size();
+		int avg=temp/size;
+		
 		Movie movie = movieService.find(mid);
 		MovieDto movieDto =  (MovieDto) movieDtoHelper.modelToDto(movie);
 
-		return (MovieDto) movieDtoHelper.modelToDto(movieService.find(mid));
+		return avg;
 	}
 	
 	

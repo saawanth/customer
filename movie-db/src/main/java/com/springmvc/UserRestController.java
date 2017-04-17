@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.springmvc.dto.RatingDto;
 import com.springmvc.dto.UserDto;
 import com.springmvc.dtohelper.MovieDtoHelper;
 import com.springmvc.dtohelper.RatingDtoHelper;
@@ -55,13 +56,21 @@ public class UserRestController {
 	}
 
 	@RequestMapping(value = "/users/{username}", method = RequestMethod.GET)
-	public UserDto findUser(@PathVariable("username") String userName) {
+	public List<RatingDto> findUser(@PathVariable("username") String userName) {
 
 		User user = userService.find(userName);
+		
+		List<Rating> ratings=ratingService.findRatingByUsername(userName);
+		List<RatingDto> ratingDto=new ArrayList<>();
+		
+		for(Rating rating:ratings){
+			ratingDto.add(ratingDtoHelper.modelToDto(rating));
+			
+		}
 
-		UserDto userDto = userDtoHelper.modelToDto(user);
+		//UserDto userDto = userDtoHelper.modelToDto(user);
 
-		return userDto;
+		return ratingDto;
 
 	}
 

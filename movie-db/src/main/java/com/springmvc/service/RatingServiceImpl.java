@@ -30,7 +30,7 @@ public class RatingServiceImpl implements RatingService{
 	
 	
 	@Override
-	public Rating findRating(Integer mid) {
+	public List<Rating> findRating(Integer mid) {
 		return ratingDao.findRating(mid);
 	}
 	
@@ -53,6 +53,20 @@ public class RatingServiceImpl implements RatingService{
 	public void delete(Rating rating) {
 		ratingDao.delete(rating);
 		
+	}
+
+
+	@Override
+	public List<Rating> findRatingByUsername(String userName) {
+	
+		return ratingDao.findRatingByUsername(userName);
+	}
+
+
+	@Override
+	public List<Movie> findMovieByGenreId(String genre) {
+		
+		return ratingDao.findMovieByGenreId(genre);
 	}
 
 }

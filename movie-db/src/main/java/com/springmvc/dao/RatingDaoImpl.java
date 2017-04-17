@@ -42,10 +42,10 @@ public class RatingDaoImpl implements RatingDao {
 	
 	
 	@Override
-	public Rating findRating(Integer mid) {
+	public List<Rating> findRating(Integer mid) {
 		Query q=entityManager.createQuery("select x from Rating x where mid=:mid");
 		q.setParameter("mid", mid);
-		return (Rating) q.getSingleResult();
+		return  q.getResultList();
 	}
 
 
@@ -68,6 +68,22 @@ public class RatingDaoImpl implements RatingDao {
 	@Override
 	public void delete(Rating rating) {
 		entityManager.remove(entityManager.merge(rating));
+	}
+
+
+	@Override
+	public List<Rating> findRatingByUsername(String userName) {
+		Query q=entityManager.createQuery("select x from Rating x where username=:username");
+		q.setParameter("username", userName);
+		return q.getResultList();
+	}
+
+
+	@Override
+	public List<Movie> findMovieByGenreId(String genre) {
+		Query q=entityManager.createQuery("select x from Movie x where genre=:genre");
+		q.setParameter("genre", genre);
+		return q.getResultList();
 	}
 
 	

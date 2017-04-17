@@ -52,12 +52,16 @@ public class RatingRestController {
 	}
 	
 	@RequestMapping(value = "/ratings/{title}", method = RequestMethod.GET)
-	public RatingDto find(@PathVariable("title") String moviename){
+	public List<RatingDto> find(@PathVariable("title") String moviename){
 		
 		Movie movie=movieService.find(moviename);
-		Rating rating=ratingService.findRating(movie.getMid());
+		List<Rating> ratings=ratingService.findRating(movie.getMid());
+		List<RatingDto> ratingDto= new ArrayList<>();
+		for(Rating rating:ratings){
+			ratingDto.add(ratingDtoHelper.modelToDto(rating));
+		}
 		
-		return ratingDtoHelper.modelToDto(rating);
+		return ratingDto;
 		
 	}
 	
@@ -99,4 +103,6 @@ public class RatingRestController {
 		// return new ResponseEntity<>(usrDto1, HttpStatus.OK);
 
 	}
+	
+
 }

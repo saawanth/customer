@@ -11,6 +11,7 @@ public class MovieDtoHelperImpl implements MovieDtoHelper {
 	@Override
 	public Movie dtoToModel(MovieDto dto) {
 		Movie movie = new Movie();
+		movie.setMid(dto.getMid());
 		movie.setMoviename(dto.getMoviename());
 		movie.setGenre(dto.getGenre());
 		return movie;
@@ -21,6 +22,7 @@ public class MovieDtoHelperImpl implements MovieDtoHelper {
 		MovieDto movie = new MovieDto();
 		movie.setMoviename(model.getMoviename());
 		movie.setGenre(model.getGenre());
+		movie.setMid(model.getMid());
 		return movie;
 	}
 
