@@ -1,5 +1,6 @@
 package com.springmvc.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -80,11 +81,18 @@ public class RatingDaoImpl implements RatingDao {
 
 
 	@Override
-	public List<Movie> findMovieByGenreId(String genre) {
-		Query q=entityManager.createQuery("select x from Movie x where genre=:genre");
-		q.setParameter("genre", genre);
+	public List<Rating> findRatingByGenreId(List<Integer> movies, String username) {
+		
+	
+		
+		Query q= entityManager.createQuery("select x from Rating x where username=:username");
+		
+		q.setParameter("username", username);
 		return q.getResultList();
 	}
+
+
+
 
 	
 }

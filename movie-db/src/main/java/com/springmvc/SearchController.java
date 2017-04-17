@@ -36,13 +36,18 @@ public class SearchController {
 		RatingDtoHelper ratingDtoHelper;
 
 
-@RequestMapping(value="search/{genre}",method=RequestMethod.GET)
-public List<Movie> findMovies(@PathVariable("genre") String genre ){
+@RequestMapping(value="search/{genre}/{username}",method=RequestMethod.GET)
+public List<Rating> findMovies(@PathVariable("genre") String genre, @PathVariable("username") String username){
 	
 	List<Movie> movies= movieService.findMovieByGenre(genre);
-    List<Movie> result=ratingService.findMovieByGenreId(genre);
-	
-	return result;
+
+	List<Integer> list=new ArrayList<Integer>();
+	for(Movie movie:movies){
+		list.add(movie.getMid());
+	}
+
+	List<Rating> ratings=ratingService.findRatingByGenreId(list,username);
+	return ratings;
 	
 	
 }

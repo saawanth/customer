@@ -71,7 +71,7 @@ public class MovieDaoImpl implements MovieDao{
 
 	@Override
 	public List<Movie> findMovieByGenre(String genre) {
-		Query q=entityManager.createQuery("select x from Movie where genre=:genre");
+		Query q=entityManager.createQuery("select x from Movie x where genre=:genre");
 		q.setParameter("genre", genre);
 		return q.getResultList();
 	}
