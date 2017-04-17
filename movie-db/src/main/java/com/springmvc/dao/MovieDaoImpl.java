@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.springmvc.dao.MovieDao;
 import com.springmvc.model.Movie;
+import com.springmvc.model.User;
 
 @Transactional
 public class MovieDaoImpl implements MovieDao{
@@ -23,9 +24,10 @@ public class MovieDaoImpl implements MovieDao{
 
 
 	@Override
-	public void insert(Movie movie) {
+	public Movie insert(Movie movie) {
 	
 		entityManager.persist(movie);
+		return movie;
 	}
 
 	@Override
@@ -48,6 +50,23 @@ public class MovieDaoImpl implements MovieDao{
 		Movie movie=(Movie) query.getSingleResult();
 		return movie;
 	
+	}
+	@Override
+	public List<Movie> getAll() {
+		Query q = entityManager.createQuery("SELECT x FROM Movie x ");
+		return q.getResultList();
+	}
+	
+	@Override
+	public Movie update(Movie movie) {
+		return entityManager.merge(movie);
+	}
+
+	
+	public Movie delete(int mid) {
+		Movie movie = entityManager.find(Movie.class, mid);
+		entityManager.remove(movie);
+		return movie;
 	}
 	
 }

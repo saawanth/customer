@@ -12,9 +12,15 @@ import javax.persistence.Table;
 public class Movie {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="mid")
+	//@GeneratedValue(strategy=GenerationType.AUTO)
 	Integer mid;
+
+	@Column(name = "title")
+	String moviename;
+
+	@Column(name = "genre")
+	String genre;
 
 	public Integer getMid() {
 		return mid;
@@ -23,13 +29,7 @@ public class Movie {
 	public void setMid(Integer mid) {
 		this.mid = mid;
 	}
-
-	@Column(name = "title")
-	String moviename;
-
-	@Column(name = "genre")
-	String genre;
-
+	
 	public String getMoviename() {
 		return moviename;
 	}

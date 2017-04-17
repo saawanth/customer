@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.springmvc.dto.UserDto;
 import com.springmvc.model.User;
 
-
+@Component
 public interface UserService {
 	HashMap<String,User> hmap=new HashMap<String,User>();
 	void insert(User user);

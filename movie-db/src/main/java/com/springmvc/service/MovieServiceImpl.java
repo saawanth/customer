@@ -3,17 +3,19 @@ package com.springmvc.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.springmvc.dao.MovieDao;
 import com.springmvc.model.Movie;
 
+@Service
 public class MovieServiceImpl implements MovieService {
 	@Autowired
 	MovieDao movieDao;
 
 	@Override
-	public void insert(Movie movie) {
-		movieDao.insert(movie);
+	public Movie insert(Movie movie) {
+		return movieDao.insert(movie);
 		
 	}
 
@@ -28,6 +30,24 @@ public class MovieServiceImpl implements MovieService {
 		
 		return movieDao.find(mid);
 	}
+	
+	
+	@Override
+	public List<Movie> getAll() {
+		
+		return movieDao.getAll();
+	}
 
+	@Override
+	public Movie update(Movie movie) {
+		
+		return movieDao.update(movie);
+	}
+
+	
+	@Override
+	public Movie delete(int mid) {
+		return movieDao.delete(mid);
+	}
 	
 }
