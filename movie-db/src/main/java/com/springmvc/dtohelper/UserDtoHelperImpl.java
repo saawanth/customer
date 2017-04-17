@@ -11,7 +11,7 @@ public class UserDtoHelperImpl implements UserDtoHelper {
 	@Override
 	public User dtoToModel(UserDto dto) {
 		User user = new User();
-		user.setUsername(dto.getName());
+		user.setUsername(dto.getUsername());
 		user.setAge(dto.getAge());
 		return user;
 	}
@@ -19,7 +19,7 @@ public class UserDtoHelperImpl implements UserDtoHelper {
 	@Override
 	public UserDto modelToDto(User model) {
 		UserDto userDto = new UserDto();
-		userDto.setName(model.getUsername());
+		userDto.setUsername(model.getUsername());
 		userDto.setAge(model.getAge());
 
 		return userDto;

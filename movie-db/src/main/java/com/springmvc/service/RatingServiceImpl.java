@@ -21,17 +21,38 @@ public class RatingServiceImpl implements RatingService{
 		ratingDao.insert(rating);
 		
 	}
+	
+	
 	@Override
 	public List<Rating> findAll() {
-		
 		return ratingDao.findAll();
 	}
+	
+	
 	@Override
 	public Rating findRating(Integer mid) {
-		
-		
-		
 		return ratingDao.findRating(mid);
+	}
+	
+	
+	@Override
+	public void update(Rating rating) {
+		ratingDao.update(rating);
+	}
+	
+	
+	@Override
+	public Rating findRatingById(Integer rid) {
+		
+		return ratingDao.findRatingById(rid);
+	}
+	
+	
+	
+	@Override
+	public void delete(Rating rating) {
+		ratingDao.delete(rating);
+		
 	}
 
 }

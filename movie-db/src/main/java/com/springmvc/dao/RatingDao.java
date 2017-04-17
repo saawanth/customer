@@ -8,8 +8,18 @@ import com.springmvc.model.Rating;
 import com.springmvc.model.User;
 
 public interface RatingDao {
+	
 	 void insert(Rating rating);
+	 	
 	 User find(String username);
-	List<Rating> findAll();
-	Rating findRating(Integer mid);
+	 
+	 List<Rating> findAll();
+	 
+	 Rating findRating(Integer mid);
+	 
+	 void update(Rating rating);
+	 
+	 Rating findRatingById(Integer rid);
+	
+	 void delete(Rating rating);
 }
