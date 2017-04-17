@@ -13,6 +13,10 @@ public interface RatingService {
 	List<Rating> findAll();
 	
 	Rating findRating(Integer mid);
+
+	void update(Rating rating);
 	 
-	
+	Rating findRatingById(Integer rid);
+
+	void delete(Rating rating);
 }

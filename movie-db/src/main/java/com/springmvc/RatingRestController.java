@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.springmvc.dto.RatingDto;
+import com.springmvc.dto.UserDto;
 import com.springmvc.dtohelper.MovieDtoHelper;
 import com.springmvc.dtohelper.RatingDtoHelper;
 import com.springmvc.model.Movie;
 import com.springmvc.model.Rating;
+import com.springmvc.model.User;
 import com.springmvc.service.MovieService;
 import com.springmvc.service.RatingService;
 import com.springmvc.service.UserService;
@@ -54,5 +59,44 @@ public class RatingRestController {
 		
 		return ratingDtoHelper.modelToDto(rating);
 		
+	}
+	
+	@RequestMapping(value="/ratings/insertrating",method=RequestMethod.POST)
+	public ResponseEntity<RatingDto> insertrating(@RequestBody RatingDto ratingDto){
+		
+		Rating rating=ratingDtoHelper.dtoToModel(ratingDto);
+		ratingService.insert(rating);
+		
+		return new ResponseEntity<>(ratingDto,HttpStatus.OK) ;
+		
+	}
+	
+	
+	@RequestMapping(value="/ratings/updaterating/{rid}",method=RequestMethod.PUT)
+	public ResponseEntity<RatingDto> updaterating(@PathVariable int rid, @RequestBody RatingDto ratingDto){
+		Rating rating=ratingService.findRatingById(rid);
+		rating.setRate(ratingDto.getRating());
+		Movie movie=movieService.find(ratingDto.getMid());
+		rating.setMovie(movie);
+		User user=userService.find(ratingDto.getUsername());
+		rating.setUser(user);
+
+		ratingService.update(rating);
+		
+		return new ResponseEntity<>(ratingDto,HttpStatus.OK) ;
+		
+	}
+	
+	
+	@RequestMapping(value = "/ratings/{rid}", method = RequestMethod.DELETE)
+	public ResponseEntity<Rating> deleteUser(@PathVariable("rid") int rid) {
+
+		Rating rating=ratingService.findRatingById(rid);
+		ratingService.delete(rating);
+		// UserDto usrDto1 = (UserDto) dtoHelper.modelToDto(user);
+		return null;
+
+		// return new ResponseEntity<>(usrDto1, HttpStatus.OK);
+
 	}
 }

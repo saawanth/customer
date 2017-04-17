@@ -3,16 +3,18 @@ package com.springmvc.dto;
 import java.util.List;
 
 public class UserDto {
-	private String name;
+	private String username;
 	private int age;
 	private List<RatingDto> ratings;
 
-	public String getName() {
-		return name;
+
+
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public int getAge() {

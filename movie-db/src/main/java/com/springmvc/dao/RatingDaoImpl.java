@@ -18,6 +18,7 @@ public class RatingDaoImpl implements RatingDao {
 
 	@PersistenceContext
 	EntityManager entityManager;
+	
 	@Override
 	public void insert(Rating rating) {
 	
@@ -45,6 +46,28 @@ public class RatingDaoImpl implements RatingDao {
 		Query q=entityManager.createQuery("select x from Rating x where mid=:mid");
 		q.setParameter("mid", mid);
 		return (Rating) q.getSingleResult();
+	}
+
+
+	@Override
+	public void update(Rating rating) {
+		entityManager.merge(rating);
+		
+	}
+
+
+	@Override
+	public Rating findRatingById(Integer rid) {
+		Query q=entityManager.createQuery("select x from Rating x where rid=:rid");
+		q.setParameter("rid", rid);
+	
+		return (Rating) q.getSingleResult();
+	}
+
+
+	@Override
+	public void delete(Rating rating) {
+		entityManager.remove(entityManager.merge(rating));
 	}
 
 	

@@ -1,11 +1,13 @@
 package com.springmvc.dto;
 
+import javax.persistence.Column;
+
 public class RatingDto {
 	private int rid;
-	private int rate;
+	private int rating;
 
 	private String username;
-	private int age;
+	//private int age;
 	public String getUsername() {
 		return username;
 	}
@@ -14,16 +16,18 @@ public class RatingDto {
 		this.username = username;
 	}
 
-	public int getAge() {
+/*	public int getAge() {
 		return age;
 	}
 
 	public void setAge(int age) {
 		this.age = age;
-	}
+	}*/
+
 
 	//private UserDto user;
-	private MovieDto movie;
+
+	//private MovieDto movie;
 
 	/*public UserDto getUser() {
 		return user;
@@ -33,20 +37,29 @@ public class RatingDto {
 		this.user = user;
 	}*/
 
-	public MovieDto getMovie() {
+/*	public MovieDto getMovie() {
 		return movie;
 	}
 
 	public void setMovie(MovieDto movie) {
 		this.movie = movie;
+	}*/
+
+	private int mid;
+	public int getMid() {
+		return mid;
 	}
 
-	public int getRate() {
-		return rate;
+	public void setMid(int mid) {
+		this.mid = mid;
+	}
+
+	public int getRating() {
+		return rating;
 	}
 
 	public void setRate(int rate) {
-		this.rate = rate;
+		this.rating = rate;
 	}
 
 	public int getRid() {
