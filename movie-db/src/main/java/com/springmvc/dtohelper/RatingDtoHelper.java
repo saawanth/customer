@@ -1,9 +1,7 @@
 package com.springmvc.dtohelper;
 
-public interface RatingDtoHelper<M, D> {
+import com.springmvc.dto.RatingDto;
+import com.springmvc.model.Rating;
 
-	 public M dtoToModel(D dto);
-
-	  public D modelToDto(M model);
-	
+public interface RatingDtoHelper extends DtoHelper<Rating, RatingDto> {
 }

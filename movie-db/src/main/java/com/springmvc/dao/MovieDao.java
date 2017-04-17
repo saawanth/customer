@@ -8,7 +8,7 @@ import com.springmvc.model.User;
 public interface MovieDao {
 	public void insert(Movie movie);
 
-	public List<Movie> find(String moviename);
+	public Movie find(String moviename);
 
 	public Movie find(int mid);
 }

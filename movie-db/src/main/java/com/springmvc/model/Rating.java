@@ -28,11 +28,11 @@ public class Rating implements Serializable {
 
 	
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "username")
 	private User user;
 
-	@ManyToOne(optional = false)
+	@ManyToOne()
 	@JoinColumn(name = "mid")
 	private Movie movie;
 

@@ -18,7 +18,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<Movie> find(String moviename) {
+	public Movie find(String moviename) {
 		return movieDao.find(moviename);
 	
 	}

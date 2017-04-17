@@ -1,13 +1,16 @@
 package com.springmvc.dtohelper;
 
+import org.springframework.stereotype.Component;
+
 import com.springmvc.dto.MovieDto;
 import com.springmvc.model.Movie;
 
-public class MovieDtoHelperImpl implements MovieDtoHelper<Movie,MovieDto>{
+@Component
+public class MovieDtoHelperImpl implements MovieDtoHelper {
 
 	@Override
 	public Movie dtoToModel(MovieDto dto) {
-		Movie movie=new Movie();
+		Movie movie = new Movie();
 		movie.setMoviename(dto.getMoviename());
 		movie.setGenre(dto.getGenre());
 		return movie;
@@ -15,8 +18,10 @@ public class MovieDtoHelperImpl implements MovieDtoHelper<Movie,MovieDto>{
 
 	@Override
 	public MovieDto modelToDto(Movie model) {
-		
-		return null;
+		MovieDto movie = new MovieDto();
+		movie.setMoviename(model.getMoviename());
+		movie.setGenre(model.getGenre());
+		return movie;
 	}
 
 }

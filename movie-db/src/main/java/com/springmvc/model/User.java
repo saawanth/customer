@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -21,7 +22,7 @@ public class User {
 	@Column(name = "age")
 	private int age;
 
-	@OneToMany(mappedBy = "user", cascade = { CascadeType.PERSIST, CascadeType.MERGE })
+	@OneToMany(mappedBy = "user",fetch=FetchType.LAZY)
 	private List<Rating> ratings = new ArrayList<Rating>();
 
 	public List<Rating> getRatings() {

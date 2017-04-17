@@ -1,9 +1,8 @@
 package com.springmvc.dtohelper;
 
-public interface MovieDtoHelper<M , D> {
+import com.springmvc.dto.MovieDto;
+import com.springmvc.model.Movie;
 
-	 public M dtoToModel(D dto);
+public interface MovieDtoHelper extends DtoHelper<Movie, MovieDto> {
 
-	  public D modelToDto(M model);
-	  
 }

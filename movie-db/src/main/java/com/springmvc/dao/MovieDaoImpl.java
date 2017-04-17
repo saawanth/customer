@@ -29,13 +29,13 @@ public class MovieDaoImpl implements MovieDao{
 	}
 
 	@Override
-	public List<Movie> find(String moviename) {
+	public Movie find(String moviename) {
 	//	String user;
 		String sql="from Movie m where title=:title";
 		Query query=entityManager.createQuery(sql);
 		
 		query.setParameter("title",moviename);
-		List<Movie> movie=(List<Movie>) query.getResultList();
+		Movie movie=(Movie) query.getSingleResult();
 		return movie;
 	}
 

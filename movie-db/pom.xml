@@ -6,7 +6,7 @@
 
 	<groupId>com.4serv.samples</groupId>
 	<version>1.0.0-SNAPSHOT</version>
-	<artifactId>Spring-MVC</artifactId>
+	<artifactId>movie-db</artifactId>
 	<name>Sample Spring mvc Application</name>
 	<packaging>war</packaging>
 
