@@ -24,5 +24,5 @@ public interface RatingService {
 
 	List<Rating> findRatingByGenreId(List<Integer> movies, String username);
 
-
+	public List<Rating> findUserRatingByGenre(String genre, String username) ;
 }

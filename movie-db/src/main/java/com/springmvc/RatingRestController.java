@@ -16,6 +16,7 @@ import com.springmvc.dto.RatingDto;
 import com.springmvc.dto.UserDto;
 import com.springmvc.dtohelper.MovieDtoHelper;
 import com.springmvc.dtohelper.RatingDtoHelper;
+import com.springmvc.dtohelper.UserDtoHelper;
 import com.springmvc.model.Movie;
 import com.springmvc.model.Rating;
 import com.springmvc.model.User;
@@ -38,6 +39,9 @@ public class RatingRestController {
 
 	@Autowired
 	RatingDtoHelper ratingDtoHelper;
+	
+	@Autowired
+	UserDtoHelper userDtoHelper;
 
 	@RequestMapping(value = "/ratings", method = RequestMethod.GET)
 	public List<RatingDto> findAll() {
@@ -46,7 +50,7 @@ public class RatingRestController {
 		List<RatingDto> ratingDtos = new ArrayList<>();
 		for (Rating rating : ratings) {
 			ratingDtos.add((RatingDto) ratingDtoHelper.modelToDto(rating));
-		}
+	}
 		return ratingDtos;
 
 	}
@@ -79,10 +83,10 @@ public class RatingRestController {
 	@RequestMapping(value="/ratings/updaterating/{rid}",method=RequestMethod.PUT)
 	public ResponseEntity<RatingDto> updaterating(@PathVariable int rid, @RequestBody RatingDto ratingDto){
 		Rating rating=ratingService.findRatingById(rid);
-		rating.setRate(ratingDto.getRating());
-		Movie movie=movieService.find(ratingDto.getMid());
+		rating.setRating(ratingDto.getRating());
+		Movie movie=movieDtoHelper.dtoToModel(ratingDto.getMovie());
 		rating.setMovie(movie);
-		User user=userService.find(ratingDto.getUsername());
+		User user=userDtoHelper.dtoToModel(ratingDto.getUser());
 		rating.setUser(user);
 
 		ratingService.update(rating);

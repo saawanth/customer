@@ -65,9 +65,17 @@ public class RatingServiceImpl implements RatingService{
 
 	@Override
 	public List<Rating> findRatingByGenreId(List<Integer> movies, String username) {
-		ratingDao.findRatingByGenreId(movies,username);
-		return null;
+		
+		return ratingDao.findRatingByGenreId(movies,username);
 	}
+
+
+	@Override
+	public List<Rating> findUserRatingByGenre(String genre, String username) {
+		
+		return ratingDao.findUserRatingByGenre(genre, username);
+	}
+
 
 
 

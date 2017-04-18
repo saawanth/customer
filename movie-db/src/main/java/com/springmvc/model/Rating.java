@@ -2,6 +2,7 @@ package com.springmvc.model;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ratings")
 public class Rating implements Serializable {
@@ -20,20 +24,20 @@ public class Rating implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="rid")
+	@Column(name = "rid")
 	private int rid;
 
 	@Column(name = "rating")
-	private int rate;
+	private int rating;
 
-	
-
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JsonIgnore
 	@JoinColumn(name = "username")
 	private User user;
 
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mid")
+	@JsonIgnore
 	private Movie movie;
 
 	public int getRid() {
@@ -60,12 +64,12 @@ public class Rating implements Serializable {
 		this.movie = movie;
 	}
 
-	public int getRate() {
-		return rate;
+	public int getRating() {
+		return rating;
 	}
 
-	public void setRate(int rate) {
-		this.rate = rate;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }

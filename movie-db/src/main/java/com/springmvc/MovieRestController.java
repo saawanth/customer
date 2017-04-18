@@ -57,7 +57,7 @@ public class MovieRestController {
 		
 		int temp=0;
 		for(Rating rating:ratings){
-			temp=rating.getRate()+temp;
+			temp=rating.getRating()+temp;
 		}
 		int size=ratings.size();
 		int avg=temp/size;

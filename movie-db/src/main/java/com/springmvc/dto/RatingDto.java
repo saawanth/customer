@@ -6,7 +6,7 @@ public class RatingDto {
 	private int rid;
 	private int rating;
 
-	private String username;
+/*	private String username;
 	//private int age;
 	public String getUsername() {
 		return username;
@@ -15,7 +15,7 @@ public class RatingDto {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-
+*/
 /*	public int getAge() {
 		return age;
 	}
@@ -25,41 +25,41 @@ public class RatingDto {
 	}*/
 
 
-	//private UserDto user;
+	private UserDto user;
 
-	//private MovieDto movie;
+private MovieDto movie;
 
-	/*public UserDto getUser() {
+	public UserDto getUser() {
 		return user;
 	}
 
 	public void setUser(UserDto user) {
 		this.user = user;
-	}*/
+	}
 
-/*	public MovieDto getMovie() {
+	public MovieDto getMovie() {
 		return movie;
 	}
 
 	public void setMovie(MovieDto movie) {
 		this.movie = movie;
-	}*/
+	}
 
-	private int mid;
+	/*private int mid;
 	public int getMid() {
 		return mid;
 	}
 
 	public void setMid(int mid) {
 		this.mid = mid;
-	}
+	}*/
 
 	public int getRating() {
 		return rating;
 	}
 
-	public void setRate(int rate) {
-		this.rating = rate;
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 	public int getRid() {

@@ -21,4 +21,6 @@ public interface UserService {
 	void delete(User user);
 
 	void patch(User currentUser, UserDto userDto);
+	
+	
 }

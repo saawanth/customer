@@ -24,8 +24,11 @@ public class SearchController {
 
 		@Autowired
 		UserService userService;
+		
 		@Autowired
 		MovieService movieService;
+		
+		
 		@Autowired
 		RatingService ratingService;
 
@@ -41,12 +44,8 @@ public List<Rating> findMovies(@PathVariable("genre") String genre, @PathVariabl
 	
 	List<Movie> movies= movieService.findMovieByGenre(genre);
 
-	List<Integer> list=new ArrayList<Integer>();
-	for(Movie movie:movies){
-		list.add(movie.getMid());
-	}
 
-	List<Rating> ratings=ratingService.findRatingByGenreId(list,username);
+	List<Rating> ratings=ratingService.findUserRatingByGenre(genre, username);
 	return ratings;
 	
 	

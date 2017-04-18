@@ -1,5 +1,7 @@
 package com.springmvc.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -7,7 +9,9 @@ public class MovieDto {
 	private int mid;
 	private String moviename;
 	private String genre;
+
 	
+
 	public int getMid() {
 		return mid;
 	}
