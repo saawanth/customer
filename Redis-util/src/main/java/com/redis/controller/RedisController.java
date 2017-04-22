@@ -1,6 +1,9 @@
 package com.redis.controller;
 
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.text.html.FormSubmitEvent.MethodType;
 
@@ -29,11 +32,73 @@ public class RedisController {
 	  productRepo.saveProduct(product);
 	  return new ResponseEntity<>(product,HttpStatus.OK) ;
   }
-  @RequestMapping(value="/read/{name}",method = RequestMethod.GET)
-  public Product read(@PathVariable("name") String name) {
+  @RequestMapping(value="/find/{name}",method = RequestMethod.GET)
+  public Product find(@PathVariable("name") String name) {
 	  
 	Product pers=productRepo.find(name);
 	  return pers;
   }
 
+  @RequestMapping(value="/findAll",method = RequestMethod.GET)
+  public List<Object> findAll() {
+	  
+	List<Object> prods=productRepo.findAll();
+	
+	  return prods;
+  }
+  
+  
+  @RequestMapping(value="/findAllKeys",method = RequestMethod.GET)
+  public Set<Object> keyset() {
+	  
+	Set<Object> keyset=productRepo.findKeySet();
+	
+	  return keyset;
+  }
+  
+  
+  @RequestMapping(value="/entryset",method = RequestMethod.GET)
+  public Map entryset() {
+	  
+	Map entryset=productRepo.allEntries();
+	
+	  return entryset;
+  }
+  
+
+  @RequestMapping(value="/hasKey/{name}",method = RequestMethod.GET)
+  public boolean hasKey(@PathVariable("name") String name) {
+	  
+	boolean bool=productRepo.hasKey(name);
+	
+	  return bool;
+  }
+  
+
+  @RequestMapping(value="/size",method = RequestMethod.GET)
+  public long size() {
+	  
+	long size=productRepo.findSize();
+	
+	  return size;
+  }
+  
+  @RequestMapping(value="/values",method = RequestMethod.GET)
+  public List<Product> values() {
+	  
+	List<Product> values=productRepo.findValues();
+	
+	  return values;
+  }
+  
+  
+  @RequestMapping(value="/remove/{name}",method = RequestMethod.DELETE)
+  public void delete(@PathVariable("name") String name) {
+	  
+	productRepo.remove(name);
+	
+	  
+  }
+  
+  
 }

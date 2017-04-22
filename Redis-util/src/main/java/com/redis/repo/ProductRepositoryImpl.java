@@ -1,6 +1,10 @@
 package com.redis.repo;
 
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -39,6 +43,49 @@ public Product find(String name) {
 	
 }
 
+@Override
+public List<Object> findAll() {
+	
+Set<Object> hashKeys=hashOps.keys(KEY);
+	
+	return hashOps.multiGet(KEY, hashKeys);
+}
+
+@Override
+public Set<Object> findKeySet() {
+	Set<Object> keyset=hashOps.keys(KEY);
+	return keyset;
+}
+
+@Override
+public Map allEntries() {
+	Map entrySet=hashOps.entries(KEY);
+	return entrySet;
+}
+
+@Override
+public boolean hasKey(String hashKey) {
+	boolean bool=hashOps.hasKey(KEY, hashKey);
+	return bool;
+}
+
+@Override
+public long findSize() {
+	long size=hashOps.size(KEY);
+	return size;
+}
+
+@Override
+public List<Product> findValues() {
+	List<Product> values=hashOps.values(KEY);
+	return values;
+}
+
+@Override
+public void remove(String name) {
+	hashOps.delete(KEY, name);
+	
+}
 
 }
 
