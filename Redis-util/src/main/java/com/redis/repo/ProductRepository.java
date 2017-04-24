@@ -8,6 +8,7 @@ import java.util.Set;
 import com.redis.model.Product;
 
 public interface ProductRepository {
+	
 	void saveProduct(Product product);
 
 	Product find(String name);
@@ -25,4 +26,22 @@ public interface ProductRepository {
 	List<Product> findValues();
 
 	void remove(String name);
+
+	void saveProduct1(Product product);
+
+	Product findMapObject(String name);
+
+	void clear();
+
+	void sortedSet(Product product);
+
+	Set<Product> zGet();
+
+	long zcard();
+
+	Set zget(int score);
+
+	Set zrange(int min, int max);
+
+	Set zrangescore(int min, int max);
 }
