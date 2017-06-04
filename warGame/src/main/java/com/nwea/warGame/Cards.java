@@ -17,12 +17,10 @@ public class Cards implements Deck {
 		cardDeck = new ArrayList<Integer>();
 
 		int totalCards = (numberOfSuits * numberOfRanks);
-		System.out.println(totalCards);
 		// Create card deck by repeating 2 till number of ranks
 		for (int i = 0; i < totalCards;) {
 			for (int j = 2; j <= (numberOfRanks + 1); j++) {
 				cardDeck.add(j);
-				System.out.println(j);
 				i++;
 			}
 		}
@@ -43,13 +41,15 @@ public class Cards implements Deck {
 
 		// Compare & find out highest card.
 		int maxCardIndex = findOutMaxValue(onTable);
-		if (maxCardIndex == 0) { // call again
-/////////////////////// Need to have recursive call to findOutMaxValue()
+		if (maxCardIndex == 101) { // call again
+			/////////////////////// Need to have recursive call to
+			/////////////////////// findOutMaxValue()
 		} else { // Push all cards on table to winning player's card deck.
 			for (Integer key : onTable.keySet()) {
 				players[maxCardIndex].myCards.add(onTable.get(key));
 			}
-			System.out.println(players[maxCardIndex].playerName + " won this deal.");
+			System.out.println("........................ "+players[maxCardIndex].playerName + " won this deal.");
+			System.out.println("**********************************");
 		} // end of else
 
 	}
@@ -61,33 +61,36 @@ public class Cards implements Deck {
 		// Turn on and put, one card from each player, on table.
 		for (int i = 0; i < players.length; i++) {
 			String currentCard = "";
-			switch (players[i].myCards.get(i)) {
-			case 11:
-				currentCard = "J";
-				break;
-			case 12:
-				currentCard = "Q";
-				break;
-			case 13:
-				currentCard = "K";
-				break;
-			case 14:
-				currentCard = "A";
-				break;
-			default:
-				currentCard = players[i].myCards.get(i).toString();
-				break;
-			}
-			System.out.println(players[i].playerName + "'s card [" + currentCard + "]");
-			pulledCards.put(i, players[i].myCards.remove(i));
-		}
+			if (!players[i].lost) {
+				System.out.print(players[i].displayCards());
+				switch (players[i].myCards.get(0)) {
+				case 11:
+					currentCard = "J";
+					break;
+				case 12:
+					currentCard = "Q";
+					break;
+				case 13:
+					currentCard = "K";
+					break;
+				case 14:
+					currentCard = "A";
+					break;
+				default:
+					currentCard = players[i].myCards.get(0).toString();
+					break;
+				}
+				System.out.println("[" + currentCard + "]");
+				pulledCards.put(i, players[i].myCards.remove(0));
+			} // end of if
+		} // end of for
 
 		return pulledCards;
 	}
 
 	private int findOutMaxValue(Map<Integer, Integer> onTable) {
 
-		int resultKey = 0; // Zero means, it is equal, so calling method has to
+		int resultKey = 101; // 101 means, it is equal, so calling method has to
 							// pull next set and call this method again, till
 							// this returns non-zero
 
@@ -101,8 +104,8 @@ public class Cards implements Deck {
 			}
 		}
 
-		if (duplicateCounter > 0) {
-			resultKey = 0;
+		if (duplicateCounter > 1) {
+			resultKey = 101;
 		}
 
 		return resultKey;
