@@ -1,10 +1,11 @@
 package com.nwea.warGame;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
- * Actual cards on table.
+ * Actual cards on table, creation and actual deal implementation logic.
  */
 public class Cards implements Deck {
 
@@ -25,13 +26,15 @@ public class Cards implements Deck {
 		}
 	}
 
+	/** This is additional method, 
+	  * I would like to delete at later stage - including now 
+	  * as part of requirements.
+	  */
 	public void shuffle() {
-		// TODO Auto-generated method stub
-
+		Collections.shuffle(cardDeck);
 	}
 
-	public void deal() {
-		// TODO Auto-generated method stub
+	public void deal(Player[] players) {
 
 	}
 

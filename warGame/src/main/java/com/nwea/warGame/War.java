@@ -49,7 +49,7 @@ public class War {
 	
 	// Method handling main logic of comparing and adjusting cards between players.
 	private void playRounds() {
-		cardOnTable.deal();
+		cardOnTable.deal(players);
 		
 		// Loop thru players to initiate and shuffle cards
 		

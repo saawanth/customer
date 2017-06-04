@@ -7,7 +7,10 @@ public interface Deck {
 	/* Shuffle the deck */
 	public void shuffle();
 
-	/* deal a card from the deck */
-	public void deal();
+	/* Abstracts & implements logic for game & 
+	 * adds all cards to winners card deck. 
+	 * So we can have multiple types of cards rule, based on region.
+	 * */
+	public void deal(Player[] players);
 
 }
