@@ -18,7 +18,7 @@ public class PlayerTest {
 		player1.myCards.add(3);
 		
 		player1.displayCards();
-		Assert.assertFalse(false);
+		Assert.assertEquals("player1's cards [1, 2, 3]", player1.displayCards());
 	}
 
 }

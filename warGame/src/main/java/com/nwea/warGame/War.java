@@ -1,5 +1,7 @@
 package com.nwea.warGame;
 
+import java.util.LinkedList;
+
 /**
  * Represents actual War game & starting point of application.
  * Since there is going to be only one War game at a time, 
@@ -39,6 +41,10 @@ public class War {
 
 	private void createPlayers(int numberOfPlayers) {
 		players = new Player[numberOfPlayers];
+		for(int i=0; i < players.length; i++) {
+			players[i].playerName = "Player" + i;
+			players[i].myCards = new LinkedList<>();
+		}
 		
 	}
 	
@@ -50,15 +56,12 @@ public class War {
 	// Method handling main logic of comparing and adjusting cards between players.
 	private void playRounds() {
 		cardOnTable.deal(players);
-		
-		// Loop thru players to initiate and shuffle cards
-		
-		
-		// start throwing
-		
-		// start comparing & decision of winner
-		
-		// display player card. player.displayCards();
+
+		// check available cards in each player's card deck
+		for(int i=0; i < players.length; i++) {
+			
+		}
+
 		
 	}
 	

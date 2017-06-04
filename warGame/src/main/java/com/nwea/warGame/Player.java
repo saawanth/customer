@@ -14,7 +14,7 @@ public class Player {
 	List<Integer> myCards; 
 	
 	// This can be enhanced, based on various options to display.
-	public void displayCards() {
-		System.out.println(this.playerName + "'s cards " + Arrays.toString(myCards.toArray()));
+	public String displayCards() {
+		return this.playerName + "'s cards " + Arrays.toString(myCards.toArray());
 	}
 }
