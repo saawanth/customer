@@ -1,44 +1,38 @@
 package com.nwea.warGame;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Represents a player in game.
- * Keeping this class simple, so going forward we can region specific 
- * functionalities in player.
+ * Represents a player in game. Keeping this class simple, so going forward we
+ * can region specific functionalities in player.
  */
 public class Player {
 
-	String playerName;
-	List<Integer> myCards; 
-	boolean lost;
-	
-	// This can be enhanced, based on various options to display.
-	public String displayCards() {
-		// return this.playerName + "'s cards " + Arrays.toString(myCards.toArray());
-		
-		String displayString = this.playerName + "'s cards [";
-		for(Integer card: myCards) {
-				switch (card) {
-				case 11:
-					displayString += " J";
-					break;
-				case 12:
-					displayString += " Q";
-					break;
-				case 13:
-					displayString += " K";
-					break;
-				case 14:
-					displayString += " A";
-					break;
-				default:
-					displayString += " " + card.toString();
-					break;
-				}
-		} // end for loop
-		displayString += "]";
-		return displayString;
+	private final String playerName;
+	private final List<Card> myCards;
+
+	public Player(String playerName, List<Card> myCards) {
+		super();
+		this.playerName = playerName;
+		this.myCards = myCards;
+	}
+
+	public Player(String playerName) {
+		super();
+		this.playerName = playerName;
+		this.myCards = new ArrayList<>();
+	}
+
+	public String getPlayerName() {
+		return playerName;
+	}
+
+	public List<Card> getMyCards() {
+		return myCards;
+	}
+
+	public void assignCard(Card card) {
+		myCards.add(card);
 	}
 }

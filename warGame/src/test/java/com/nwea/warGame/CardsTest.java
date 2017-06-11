@@ -8,7 +8,7 @@ public class CardsTest {
 	@Test
 	public void testCreate() {
 		
-		Cards deck1 = new Cards();
+		Card deck1 = new Card();
 		deck1.create(2, 13);
 		
 		Assert.assertNotNull(deck1.cardDeck);
