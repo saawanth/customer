@@ -5,25 +5,26 @@ import java.util.List;
 
 public class SimpleDeck implements Deck {
 
-	private int dealIndex = 0;
-	private String name;
-	private List<Card> deckOfCards = new ArrayList<Card>();
-	private Shuffler shuffler;
+	private final String name;
+	private final Shuffler shuffler;
+	private final List<Card> deckOfCards = new ArrayList<Card>();
+
+	public SimpleDeck(String name, Shuffler shuffler) {
+		super();
+		this.name = name;
+		this.shuffler = shuffler;
+	}
+
+	public Shuffler getShuffler() {
+		return shuffler;
+	}
 
 	public List<Card> getDeckOfCards() {
 		return deckOfCards;
 	}
 
-	public void setDeckOfCards(List<Card> deckOfCards) {
-		this.deckOfCards = deckOfCards;
-	}
-
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
 	}
 
 	public void create(int numberOfSuits, int numberOfRanks) {
@@ -55,13 +56,15 @@ public class SimpleDeck implements Deck {
 		shuffler.shuffle(deckOfCards);
 	}
 
+	private int cardIndex = 0;
+
 	/* deal a card from the deck */
 	public Card deal() {
-		if (dealIndex >= deckOfCards.size()) {
+		if (cardIndex >= deckOfCards.size()) {
 			return null;
 		} else {
-			Card cardToDeal = deckOfCards.get(dealIndex);
-			dealIndex++;
+			Card cardToDeal = deckOfCards.get(cardIndex);
+			cardIndex++;
 			return cardToDeal;
 		}
 	}
