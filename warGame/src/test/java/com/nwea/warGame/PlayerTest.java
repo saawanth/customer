@@ -10,15 +10,16 @@ public class PlayerTest {
 	@Test
 	public void testDisplayCards() {
 
-		Player player1 = new Player();
-		player1.playerName = "player1";
-		player1.myCards = new ArrayList<>();
-		player1.myCards.add(1);
-		player1.myCards.add(2);
-		player1.myCards.add(3);
+		Player player1 = new Player("Player1");
+				
+		Assert.assertEquals("Player1", player1.getPlayerName());
 		
-		player1.displayCards();
-		Assert.assertEquals("player1's cards [1, 2, 3]", player1.displayCards());
+		Assert.assertFalse(player1.hasCards());
+		Assert.assertEquals(0, player1.getCardsSize());
+		
+		player1.assignCard(new Card(Rank.ACE, Suit.DIAMONDS));
+		Assert.assertTrue(player1.hasCards());
+		Assert.assertNotNull(player1.getCardsSize());
 	}
 
 }

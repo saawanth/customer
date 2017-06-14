@@ -8,14 +8,12 @@ public class CardsTest {
 	@Test
 	public void testCreate() {
 		
-		Card deck1 = new Card();
-		deck1.create(2, 13);
+		Card deck1 = new Card(Rank.ACE, Suit.CLUBS);
 		
-		Assert.assertNotNull(deck1.cardDeck);
-		Assert.assertEquals(26, deck1.cardDeck.size());
+		Assert.assertNotNull(deck1.getRank());
+		Assert.assertNotEquals("", deck1.toString());
+		Assert.assertEquals("ACE of CLUBS", deck1.toString());
 		
-		deck1.create(1, 10);
-		Assert.assertEquals(10, deck1.cardDeck.size());		
 	}
 	
 }
