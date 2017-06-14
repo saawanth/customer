@@ -223,6 +223,6 @@ public class War {
 	}
 
 	public static void main(String[] args) {
-		new War().initAndStartGame(4, 13, 2);
+		new War().initAndStartGame(4, 13, 3);
 	}
 }
