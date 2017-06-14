@@ -1,7 +1,5 @@
 package com.nwea.warGame;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,37 +9,28 @@ public class WarTest {
 	public void testCreatePlayers() {
 
 		War game1 = new War();
-		
-		game1.cardOnTable.create(4, 13);
-		Assert.assertEquals(52, game1.cardOnTable.cardDeck.size());
-		
-		game1.createPlayers(3);
-		Assert.assertEquals(3, game1.players.length);
-
-		game1.distributeCards();
-		Assert.assertEquals(17, game1.players[0].myCards.size());
-		
+		Player[] players = game1.createPlayers(2);
+	
+		Assert.assertNotNull(players[0]);
+		Assert.assertEquals(2, players.length);
+		Assert.assertNull(players[0].getNextCard());
+		Assert.assertNull(players[1].getNextCard());
 	}
 
 	@Test
-	public void testDistributeCards() {
+	public void testInitAndStartGame() {
 		War game1 = new War();
+		Player[] players = game1.createPlayers(2);
+		Assert.assertNull(players[0].getNextCard());
+		Assert.assertNull(players[1].getNextCard());
 		
-		game1.cardOnTable.create(4, 13);
-		Assert.assertEquals(52, game1.cardOnTable.cardDeck.size());
+		game1.initAndStartGame(2, 13, 2);
+		//game1.distributeCards();
 		
-		game1.createPlayers(2);
+		Assert.assertNull(players[0].getNextCard());
+		Assert.assertNull(players[1].getNextCard());		
 
-		game1.distributeCards();
-		Assert.assertEquals(26, game1.players[0].myCards.size());
-		Assert.assertEquals(26, game1.players[1].myCards.size());
-		// Assert.assertEquals(9, game1.players[2].myCards.size());
-
-		game1.createPlayers(5);
-
-		game1.distributeCards();
-		Assert.assertEquals(11, game1.players[0].myCards.size());
-		Assert.assertEquals(11, game1.players[1].myCards.size());
-		Assert.assertNotEquals(9, game1.players[2].myCards.size());
 	}
+	
+	
 }

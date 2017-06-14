@@ -1,8 +1,10 @@
 package com.nwea.warGame;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Represents actual War game & starting point of application. Since there is
@@ -222,7 +224,27 @@ public class War {
 		return maxPlayerCards;
 	}
 
+	public Deck getDeck() {
+		return deck;
+	}
+
 	public static void main(String[] args) {
-		new War().initAndStartGame(4, 13, 3);
+		Scanner scanner = new Scanner(System.in);
+		int suits = 0, ranks = 0, players = 0;
+		try {
+			System.out.print("Enter number of Suits : ");
+			suits = scanner.nextInt();
+			System.out.print("Enter number of Ranks : ");
+			ranks = scanner.nextInt();
+			System.out.print("Enter number of players, two or more : ");
+			players = scanner.nextInt();
+		} catch (InputMismatchException ime) {
+			System.out.println("Please enter numeric value and try again.");
+			System.exit(0);
+		} finally {
+			scanner.close();
+		}
+
+		new War().initAndStartGame(suits, ranks, players);
 	}
 }
