@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Implementation-Title: MovieStore
 Implementation-Version: 0.0.1-SNAPSHOT
 Built-By: prudvi teja ineni
-Implementation-Vendor-Id: SpringMongo
+Implementation-Vendor-Id: springMongo
 Build-Jdk: 1.8.0_111
 Implementation-URL: http://maven.apache.org
 Created-By: Maven Integration for Eclipse

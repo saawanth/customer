@@ -1,4 +1,4 @@
-package SpringMongo.MovieStore;
+package springMongo.MovieStore;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

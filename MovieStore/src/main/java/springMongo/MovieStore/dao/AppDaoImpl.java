@@ -1,17 +1,22 @@
-package SpringMongo.MovieStore.dao;
+package springMongo.MovieStore.dao;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 import org.bson.Document;
+import org.bson.conversions.Bson;
 import org.springframework.stereotype.Service;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
+import com.mongodb.client.AggregateIterable;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Aggregates;
 
 @Service
 public class AppDaoImpl implements AppDao{
@@ -51,8 +56,20 @@ public class AppDaoImpl implements AppDao{
 	
 	public Document getAvgRating(int movieId)
 	{
-		
-		return null;
+		try{
+			Document document = null;
+			getCollection();
+			MongoCollection<Document> table =  this.table;
+			BasicDBObject dbobj = new BasicDBObject("$match", new BasicDBObject("movieId", movieId));
+			AggregateIterable<Document> doc = table.aggregate(Arrays.asList(dbobj, Aggregates.project((Bson) new BasicDBObject("_id", 0).append(
+					"avgrating", new BasicDBObject("$avg", "$Watchedby.rating") ))));
+			document = doc.first();
+			return document;
+		}
+		finally
+		{
+			mongoClient.close();
+		}
 	}
 
 	public MongoCollection<Document> getCollection()
