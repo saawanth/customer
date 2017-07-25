@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.mongodb.client.AggregateIterable;
 
+import springMongo.MovieStore.bean.Users;
 import springMongo.MovieStore.dao.AppDao;
+import springMongo.MovieStore.error.CustomError;
 import springMongo.MovieStore.repository.UserRepository;
+import springMongo.MovieStore.service.UserService;
 
 @RestController
 public class AppController {
@@ -25,7 +28,7 @@ public class AppController {
 	AppDao appdao;
 	
 	@Autowired
-	UserRepository userRepository;
+	UserService userService;
 	
 	@RequestMapping(value="/getUser", method=RequestMethod.POST)
 	public ResponseEntity<?> getUserDetails(@RequestBody String user)
@@ -41,5 +44,15 @@ public class AppController {
 		return new ResponseEntity<Document>(document, HttpStatus.OK);
 	}
 	
-	
+	@RequestMapping(value="/saveUser", method=RequestMethod.POST, consumes=MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<?> saveUser(@RequestBody String userName)
+	{
+		Users users = userService.save(userName);
+		if(users == null)
+		{
+			return new ResponseEntity<CustomError>(new CustomError("cannot create a user collection"), HttpStatus.CONFLICT);
+		}
+		else
+		return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+	}
 }

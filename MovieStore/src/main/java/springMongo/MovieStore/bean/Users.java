@@ -14,4 +14,12 @@ public class Users {
 	public int age;
 	
 	public List<MoviesWatched> moviesWatched;
+	
+	public Users( String userName, int age, List<MoviesWatched> moviesWatched)
+	{
+		this.userName = userName;
+		this.age = age;
+		this.moviesWatched = moviesWatched;
+	}
+	
 }
