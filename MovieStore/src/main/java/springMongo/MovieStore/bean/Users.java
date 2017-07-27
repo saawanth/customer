@@ -3,7 +3,8 @@ package springMongo.MovieStore.bean;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
-
+import org.springframework.data.mongodb.core.mapping.Document;
+@Document(collection="users")
 public class Users {
 
 	@Id
@@ -11,15 +12,15 @@ public class Users {
 	
 	public String userName;
 	
-	public int age;
+	public int Age;
 	
-	public List<MoviesWatched> moviesWatched;
+	public List<Movieswatched> movieswatched;
 	
-	public Users( String userName, int age, List<MoviesWatched> moviesWatched)
+	public Users( String userName, int age, List<Movieswatched> Movieswatched)
 	{
 		this.userName = userName;
-		this.age = age;
-		this.moviesWatched = moviesWatched;
+		this.Age = age;
+		this.movieswatched = Movieswatched;
 	}
-	
+	public Users() {}
 }

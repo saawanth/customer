@@ -1,11 +1,17 @@
 package springMongo.MovieStore.service;
 
-import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import springMongo.MovieStore.bean.Result;
 import springMongo.MovieStore.bean.Users;
 
 
 public interface UserService {
 
-	public Users save(String name);
+	public Users save(Users users);
+	
+	public Users getUser(String name);
+	
+	public List<Result> getAvgrating(String name);
 }

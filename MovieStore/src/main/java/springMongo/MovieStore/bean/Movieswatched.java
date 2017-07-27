@@ -1,17 +1,17 @@
 package springMongo.MovieStore.bean;
 
-public class MoviesWatched {
+public class Movieswatched {
 
 	public String movieTitle;
 	
 	public double rating;
 	
-	public MoviesWatched(String movieTitle, double rating)
+	public Movieswatched(String movieTitle, double Rating)
 	{
 		this.movieTitle = movieTitle;
-		this.rating = rating;
+		this.rating = Rating;
 	}
-	public MoviesWatched() {}
+	public Movieswatched() {}
 
 	public String getMovieTitle() {
 		return movieTitle;
