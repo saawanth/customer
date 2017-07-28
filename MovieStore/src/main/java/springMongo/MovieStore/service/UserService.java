@@ -13,5 +13,5 @@ public interface UserService {
 	
 	public Users getUser(String name);
 	
-	public List<Result> getAvgrating(String name);
+	public List<Result> getAvgrating(Integer id);
 }

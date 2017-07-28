@@ -31,8 +31,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public List<Result> getAvgrating(String name) {
-		List<Result> users = userRepository.findByAvgRating(name);
+	public List<Result> getAvgrating(Integer id) {
+		List<Result> users = userRepository.findByAvgRating(id);
 		return users;
 	}
 	

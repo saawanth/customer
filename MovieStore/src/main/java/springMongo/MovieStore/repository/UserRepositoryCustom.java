@@ -7,5 +7,5 @@ import springMongo.MovieStore.bean.Users;
 
 public interface UserRepositoryCustom {
 
-	public List<Result> findByAvgRating(String name);
+	public List<Result> findByAvgRating(Integer id);
 }

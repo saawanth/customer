@@ -20,8 +20,8 @@ public class UserRepositoryImpl implements UserRepositoryCustom {
 	private MongoTemplate mongoTemplate;
 	
 	@Override
-	public List<Result> findByAvgRating(String name) {
-		TypedAggregation<Users> agg = newAggregation(Users.class,unwind("movieswatched"),match(Criteria.where("movieswatched.movieTitle").is(name)), group("movieswatched.movieTitle").avg("movieswatched.rating").as("avgrating"), project("avgrating"));
+	public List<Result> findByAvgRating(Integer id) {
+		TypedAggregation<Users> agg = newAggregation(Users.class,unwind("movieswatched"),match(Criteria.where("movieswatched.mid").is(id)), group("movieswatched.mid").avg("movieswatched.rating").as("avgrating"), project("avgrating"));
 		AggregationResults<Result> users = mongoTemplate.aggregate(agg, Users.class,Result.class);
 		List<Result> userslis = users.getMappedResults();
 		return userslis;
