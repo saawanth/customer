@@ -16,19 +16,16 @@ public class App {
 
 	    try {
 
-		/**** Connect to MongoDB ****/
-		// Since 2.10.0, uses MongoClient
 		MongoClient mongo = new MongoClient("localhost", 27017);
 
-		/**** Get database ****/
 		// if database doesn't exists, MongoDB will create it for you
 		DB db = mongo.getDB("testdb");
 
-		/**** Get collection / table from 'testdb' ****/
+
 		// if collection doesn't exists, MongoDB will create it for you
 		DBCollection table = db.getCollection("user");
 
-		/**** Insert ****/
+		
 		// create a document to store key and value
 		BasicDBObject document = new BasicDBObject();
 		document.put("name", "Praneeth");
@@ -47,7 +44,7 @@ public class App {
 		}
 
 		/**** Update ****/
-		// search document where name="mkyong" and update it with new values
+
 		BasicDBObject query = new BasicDBObject();
 		query.put("name", "Praneeth");
 
