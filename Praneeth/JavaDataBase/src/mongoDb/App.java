@@ -10,7 +10,7 @@ import com.mongodb.DBCursor;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoCredential;
 import com.mongodb.MongoException;
-
+//MongoDb DataBase Crud Operations
 public class App {
 	  public static void main(String[] args) {
 

@@ -3,7 +3,7 @@ package arrays.strings;
  * 1.1   Implement an algorithm determine if a string has all unique characters.what if you can not use additional data structures.
  * 
  * */
-
+//Jenkins Demo 
 public class UniqueString {
 
 	public static boolean isUniqueChars(String str) {
