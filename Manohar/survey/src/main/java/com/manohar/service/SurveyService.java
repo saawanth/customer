@@ -1,12 +1,12 @@
 package com.manohar.service;
 
-import java.util.List;
+import com.manohar.model.Survey;
 
-import com.manohar.dto.SurveyDto;
+import java.util.List;
 
 public interface SurveyService {
 	
-	public List<SurveyDto> findAll();
-	public SurveyDto findOne(int id);
+	public List<Survey> findAll();
+	public Survey findOne(int id);
 
 }

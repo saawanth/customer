@@ -1,48 +1,34 @@
 package com.manohar.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.manohar.DtoHelper.SurveyDtoHelper;
-import com.manohar.dto.SurveyDto;
 import com.manohar.model.Survey;
 import com.manohar.repository.SurveyRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+import java.util.List;
 
 
 @Service
+@Transactional
 public class SurveyServiceImpl implements SurveyService {
-	
+
+ 	private static final Logger LOGGER = Logger.getLogger(SurveyServiceImpl.class);
 	@Autowired
 	private SurveyRepository surveyRespositiry;
-	
-	@Autowired
-	private SurveyDtoHelper surveyDtoHelper;
-	
 
 	@Override
-	public List<SurveyDto> findAll() {
+	public List<Survey> findAll() {
 		List<Survey> surveyList = surveyRespositiry.findAll();
-		if(!(null == surveyList)) {
-			List<SurveyDto> surveyDtoList = new ArrayList<SurveyDto>();
-			for(Survey survey :surveyList) {
-				surveyDtoList.add(surveyDtoHelper.buildDto(survey));
-			}return surveyDtoList;
-		}else
-		return null;
+		return surveyList;
 	}
 
 	@Override
-	public SurveyDto findOne(int id) {
+	@Transactional(readOnly = true)
+	public Survey findOne(int id) {
 		Survey survey = surveyRespositiry.findOne(id);
-		if (!(null == survey)) {
-			SurveyDto surveyDto = surveyDtoHelper.buildDto(survey);
-			return surveyDto;
-		} else
-			return null;
+		return survey;
 	}
 
 }

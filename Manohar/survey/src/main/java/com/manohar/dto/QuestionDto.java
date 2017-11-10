@@ -1,7 +1,8 @@
 package com.manohar.dto;
 
+import com.manohar.model.QuestionType;
+
 import java.util.List;
-import java.util.Set;
 
 public class QuestionDto {
 
@@ -11,11 +12,11 @@ public class QuestionDto {
 	
 	private CategoryDto category;
 	
-	private QuestionTypeDto questionType;
+	private QuestionType questionType;
 	
 	private List<QuestionChoiceDto> questionChoice;
 	
-
+	private String questionGroup;
 
 	public QuestionDto() {}
 
@@ -43,14 +44,13 @@ public class QuestionDto {
 		this.category = category;
 	}
 
-	public QuestionTypeDto getQuestionType() {
+	public QuestionType getQuestionType() {
 		return questionType;
 	}
 
-	public void setQuestionType(QuestionTypeDto questionType) {
+	public void setQuestionType(QuestionType questionType) {
 		this.questionType = questionType;
 	}
-
 
 	public List<QuestionChoiceDto> getQuestionChoice() {
 		return questionChoice;
@@ -60,6 +60,11 @@ public class QuestionDto {
 		this.questionChoice = questionChoice;
 	}
 
+	public String getQuestionGroup() {
+		return questionGroup;
+	}
 
-	
+	public void setQuestionGroup(String questionGroup) {
+		this.questionGroup = questionGroup;
+	}
 }

@@ -1,16 +1,7 @@
 package com.manohar.model;
 
+import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 
 @Entity
 @Table(name = "survey")
@@ -46,7 +37,7 @@ public class Survey {
 		this.survey = survey;
 	}
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "survey",fetch = FetchType.LAZY)
 	public List<Category> getCategory() {
 		return category;
 	}
