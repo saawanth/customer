@@ -7,6 +7,7 @@ public interface DtoHelper<M,D> {
 
 	  public D buildDto(M model);
 
+
 	  public M build(D dto);
 
 	  public List<M> build(Iterable<D> dtos);

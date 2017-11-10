@@ -1,19 +1,30 @@
 package com.jittu.dto;
 
+import java.util.List;
+
 public class CategoryDto {
 	private int id;
-	private String Category_name;
+	private String categoryName;
+	
+	private List<QuestionDto> questions;
+	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getCategory_name() {
-		return Category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_name(String category_name) {
-		Category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
+	public List<QuestionDto> getQuestions() {
+		return questions;
+	}
+	public void setQuestions(List<QuestionDto> questions) {
+		this.questions = questions;
 	}
 	
 

@@ -22,11 +22,12 @@ public class Question {
 	private QuestionType Question_type;
 	
 	
+	
 //	Get the category reference
 	private Category category;
 	
 //	Get all the answers from Answer class
-	private List<Question_Choice> answers;
+	private List<QuestionChoice> answers;
 
 //	Generate the required constructors
 	public Question() {
@@ -96,13 +97,15 @@ public int getParent_id() {
 //	Establish One to many relationship with Answer by @OneToMany annotation and 
 //	mention the mapped by reference
 	@OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-	public List<Question_Choice> getAnswers() {
+	public List<QuestionChoice> getAnswers() {
 		return answers;
 	}
 
-	public void setAnswers(List<Question_Choice> answers) {
+	public void setAnswers(List<QuestionChoice> answers) {
 		this.answers = answers;
 	}
+
+
 	
 
 }

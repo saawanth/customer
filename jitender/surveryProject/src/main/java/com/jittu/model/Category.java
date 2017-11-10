@@ -15,8 +15,8 @@ public class Category {
 //	Define column names for each of the variables using @Column(name = "")
 	@Column(name = "category_id")
 	private int id;
-	@Column(name = "category_name")
-	private String Category_name;
+	@Column(name = "categoryName")
+	private String categoryName;
 	
 //	Get the survey reference
 	private Survey survey;
@@ -28,11 +28,11 @@ public class Category {
 	public Category() {
 		
 	}
-	public Category(String Category_name) {
-		this.Category_name = Category_name;
+	public Category(String categoryName) {
+		this.categoryName = categoryName;
 	}
-	public Category(String Category_name, Survey survey) {
-		this.Category_name = Category_name;
+	public Category(String categoryName, Survey survey) {
+		this.categoryName = categoryName;
 		this.survey = survey;
 		
 	}
@@ -48,11 +48,11 @@ public class Category {
 		this.id = id;
 	}
 	
-	public String getCategory_name() {
-		return Category_name;
+	public String getCategoryName() {
+		return categoryName;
 	}
-	public void setCategory_name(String category_name) {
-		Category_name = category_name;
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
 	}
 	
 //	Establish many to one relationship by @ManyToOne annotation and mention the
@@ -77,7 +77,7 @@ public class Category {
 	}
 	@Override
 	public String toString() {
-		return "Category [id=" + id + ", Category_name=" + Category_name + ", survey=" + survey + ", questions="
+		return "Category [id=" + id + ", Category_name=" + categoryName + ", survey=" + survey + ", questions="
 				+ questions + "]";
 	}
 	

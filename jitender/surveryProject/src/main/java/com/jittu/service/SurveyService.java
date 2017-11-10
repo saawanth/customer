@@ -5,12 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.jittu.dto.SurveyDto;
+import com.jittu.model.Survey;
 
 
 public interface SurveyService {
 	
-	public List<SurveyDto> findAll();
+	public List<Survey> findAll();
 
-	public SurveyDto findOne(int id);
+	public Survey findOne(int id);
 
 }
