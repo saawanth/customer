@@ -32,9 +32,9 @@ public class DocumentServiceImpl implements DocumentService {
 	@Autowired
 	protected SearchDocumentRepository searchRepository;
 
-	@Autowired
-	@Qualifier(value = "LocalFileStoageService")
-	private FileStorageService fileStorageService;
+//	@Autowired
+//	@Qualifier(value = "LocalFileStoageService")
+//	private FileStorageService fileStorageService;
 
 	@PostConstruct
 	public void init() {
@@ -49,7 +49,7 @@ public class DocumentServiceImpl implements DocumentService {
 		
 			document = new Document();
 			document = enrichDocument(docDto);
-			fileStorageService.save(document);
+//			fileStorageService.save(document);
 			Document savedDoc = repository.save(document);
 			try {
 			BeanUtilsBean.getInstance().copyProperties(savedDocDto, savedDoc);

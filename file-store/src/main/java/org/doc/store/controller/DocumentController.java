@@ -28,13 +28,12 @@ public class DocumentController {
 	@Autowired
 	private DocumentService documentService;
 
-	// consumes = MediaType.MULTIPART_FORM_DATA_VALUE
 	@RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody ResponseEntity<String> greeting() {
 		return new ResponseEntity<String>("Welcom to document store", HttpStatus.OK);
 	}
 
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public @ResponseBody ResponseEntity<DocumentDto> create(
 			@RequestParam(name = "docName", required = false) String docName,
 			@RequestParam(name = "docType", required = false) String docType,

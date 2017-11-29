@@ -125,4 +125,8 @@ public class Document {
 	public InputStream getInputStream() {
 		return new ByteArrayInputStream(fileData);
 	}
+
+  public void setDocS3Url(String s3FileUrl) {
+    
+  }
 }
