@@ -8,15 +8,21 @@
 
 
 	<context:annotation-config />
+	
+	<bean id="userRepo" class="com.fserv.repo.InMemoryUserRepo" />
 
-	<bean id="userJdbcRepo" class="com.fserv.repo.UserJdbcRepo" />
+	<beans profile="jdbc">
+		<bean id="userRepo" class="com.fserv.repo.UserJdbcRepo" />
+	</beans>
 
-	<bean id="inMemUserRepo" class="com.fserv.repo.InMemoryUserRepo" />
+	<beans profile="file">
+		<bean id="userRepo" class="com.fserv.repo.FileStoreUserRepo" />
+	</beans>
 
-	<bean id="fileStoreUserRepo" class="com.fserv.repo.FileStoreUserRepo" />
-
-	<bean id="userServiceImpl" class="com.fserv.service.UserServiceImpl">
-		<property name="userRepo" ref="inMemUserRepo" />
-	</bean>
+	<beans>	
+		<bean id="userServiceImpl" class="com.fserv.service.UserServiceImpl">
+			<property name="userRepo" ref="userRepo" />
+		</bean>
+	</beans>
 
 </beans>

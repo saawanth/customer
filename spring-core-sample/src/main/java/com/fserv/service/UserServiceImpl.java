@@ -9,40 +9,43 @@ import org.springframework.stereotype.Service;
 import com.fserv.model.User;
 import com.fserv.repo.UserRepo;
 
-//------transaction - 1 started -------
-//-complete unit of work in transaciton
-//-------transaction - 1 ended   ---------
+// ------transaction - 1 started -------
+// -complete unit of work in transaciton
+// -------transaction - 1 ended ---------
 
-//------transaction - 2 started -------
-//complete unit of work in transaciton
-//------transaction - 1 ended   ---------
+// ------transaction - 2 started -------
+// complete unit of work in transaciton
+// ------transaction - 1 ended ---------
 
 @Service
-@Configu
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-//	@Qualifier("inMemUserRepo")
-	private UserRepo userRepo;
+  @Autowired
+  // @Qualifier("inMemUserRepo")
+  private UserRepo userRepo;
 
-	public UserRepo getUserRepo() {
-		return userRepo;
-	}
+  public UserServiceImpl(UserRepo userRepo) {
+    this.userRepo = userRepo;
+  }
 
-	public void setUserRepo(UserRepo userRepo) {
-		this.userRepo = userRepo;
-	}
+  public UserRepo getUserRepo() {
+    return userRepo;
+  }
 
-	public User createUser(User user) {
-		return userRepo.save(user);
-	}
+  public void setUserRepo(UserRepo userRepo) {
+    this.userRepo = userRepo;
+  }
 
-	public User find(String userId) {
-		return userRepo.find(userId);
-	}
+  public User createUser(User user) {
+    return userRepo.save(user);
+  }
 
-	public List<User> findAll() {
-		return userRepo.findAll();
-	}
+  public User find(String userId) {
+    return userRepo.find(userId);
+  }
+
+  public List<User> findAll() {
+    return userRepo.findAll();
+  }
 
 }
