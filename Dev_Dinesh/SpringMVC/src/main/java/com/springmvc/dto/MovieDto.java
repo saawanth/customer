@@ -1,5 +1,8 @@
 package com.springmvc.dto;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class MovieDto {
 
 	private int mid;

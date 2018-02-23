@@ -9,7 +9,8 @@ import com.springmvc.model.Movie;
 public class MovieDaoImpl extends HibernateDaoSupport implements MovieDao {
 
 	public Movie find(String moviename) {
-		return null;
+		
+		return (Movie) getHibernateTemplate().load(Movie.class, moviename);
 	}
 
 	public List<Movie> findMovieByGenre(String genre) {
@@ -18,12 +19,17 @@ public class MovieDaoImpl extends HibernateDaoSupport implements MovieDao {
 	}
 
 	public Movie find(int mid) {
-		// TODO Auto-generated method stub
-		return null;
+		 return (Movie) getHibernateTemplate().load(Movie.class, mid);
 	}
 
-	public List<Movie> findAll() {
+	/*public List<Movie> findAll() {
 		return getHibernateTemplate().loadAll(Movie.class);
+	}*/
+	
+	public List<Movie> findAll() {
+		return  getHibernateTemplate().loadAll(Movie.class);
 	}
+	
+	
 
 }

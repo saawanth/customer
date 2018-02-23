@@ -26,7 +26,7 @@ public class Rating {
 	private Movie movie;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "uid")
+	@JoinColumn(name = "username")
 	@JsonIgnore
 	private User user;
 

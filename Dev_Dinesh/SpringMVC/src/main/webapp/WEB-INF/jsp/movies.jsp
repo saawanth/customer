@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
+<%@ page isELIgnored="false"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
@@ -16,11 +18,12 @@
 			<th>Genre</th>
 		</tr>
 
-		<c:forEach var="movies" items=${movieDetails}>
+		<c:forEach var="movies" items="list">
 			<tr>
-				<td>${movieDetails.mid}</td>
-				<td>${movieDetails.moviename}</td>
-				<td>${movieDetails.genre}</td>
+				<td>${list}</td>
+				<td>${list}</td>
+				<td>${list}</td>
+			
 
 			</tr>
 		</c:forEach>
