@@ -9,7 +9,7 @@
 
 	<context:annotation-config />
 	
-	<bean id="userRepo" class="com.fserv.repo.InMemoryUserRepo" />
+	<bean id="userRepo" class="com.fserv.repo.InMemoryUserRepo"/>
 
 	<beans profile="jdbc">
 		<bean id="userRepo" class="com.fserv.repo.UserJdbcRepo" />
@@ -23,6 +23,12 @@
 		<bean id="userServiceImpl" class="com.fserv.service.UserServiceImpl">
 			<property name="userRepo" ref="userRepo" />
 		</bean>
+		
+		
+		<bean id="userServiceImpl1" class="com.fserv.service.UserServiceImpl">
+			<property name="userRepo" ref="userRepo" />
+		</bean>
+		
 	</beans>
 
 </beans>
