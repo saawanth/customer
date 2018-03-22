@@ -3,6 +3,9 @@
 <head>
 <%@ page isELIgnored="false" %>
 </head>
-<body>Message is: ${msg}
+<body>
+           Message is: ${msg}
 </body>
 </html>
+
+

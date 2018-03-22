@@ -1,11 +1,11 @@
  package com.springmvc.model;
 
-import java.util.List;
+/*import java.util.List;*/
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+/*import javax.persistence.OneToMany;*/
 import javax.persistence.Table;
 
 
@@ -18,13 +18,13 @@ public class Movie {
 	Integer mid;
 	
 	@Column(name="title")
-	String moviename;
+	String title;
 	
 	@Column(name="genre")
 	String genre;
 	
-	@OneToMany(mappedBy="movie")
-	private List<Rating> ratings;
+/*	@OneToMany(mappedBy="movie")
+	private List<Rating> ratings;*/
 
 	public Integer getMid() {
 		return mid;
@@ -34,12 +34,14 @@ public class Movie {
 		this.mid = mid;
 	}
 
-	public String getMoviename() {
-		return moviename;
+	
+
+	public String getTitle() {
+		return title;
 	}
 
-	public void setMoviename(String moviename) {
-		this.moviename = moviename;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public String getGenre() {
@@ -50,13 +52,13 @@ public class Movie {
 		this.genre = genre;
 	}
 
-	public List<Rating> getRatings() {
+	/*public List<Rating> getRatings() {
 		return ratings;
 	}
 
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
-	}
+	}*/
 	
 	
 }

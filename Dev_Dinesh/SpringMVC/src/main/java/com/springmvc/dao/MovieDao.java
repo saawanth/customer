@@ -14,4 +14,14 @@ public interface MovieDao {
 	
 	public List<Movie> findAll();
 	
+	public List<Movie> getMovieByUser(String username);
+
+	public Movie getMovieByMovieId(int id);
+
+	public void addMovie(Movie movie);
+
+	public void deleteMovie(int id);
+
+	public void updateMovie(Movie currentMovie);
+	
 }

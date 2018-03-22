@@ -21,5 +21,23 @@ public class MovieServiceImpl implements MovieService {
 	public List<Movie> getAll() {
 		return(List<Movie>) movieDao.findAll();
 	}
+	
+	public List<Movie> getMovieByUser(String username) {
+		return(List<Movie>) movieDao.getMovieByUser(username);
+	}
+	public Movie findById(int id) {
+		return (Movie) movieDao.getMovieByMovieId(id);
+	}
+	public void saveMovie(Movie movie) {
+		movieDao.addMovie(movie);
+	}
+	public void updateMovie(Movie currentMovie) {
+		movieDao.updateMovie(currentMovie);
+	}
+	public void deleteMovieById(int id) {
+		movieDao.deleteMovie(id);
+		
+	}
+	
 
 }

@@ -1,12 +1,9 @@
 package com.springmvc.dto;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class MovieDto {
 
 	private int mid;
-	private String moviename;
+	private String title;
 	private String genre;
 	
 	public int getMid() {
@@ -15,11 +12,12 @@ public class MovieDto {
 	public void setMid(int mid) {
 		this.mid = mid;
 	}
-	public String getMoviename() {
-		return moviename;
+
+	public String getTitle() {
+		return title;
 	}
-	public void setMoviename(String moviename) {
-		this.moviename = moviename;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	public String getGenre() {
 		return genre;

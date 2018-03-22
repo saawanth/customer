@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-@Table(name="rating")
+@Table(name="rating", schema="moviestore")
 public class Rating {
 	
 	@Id

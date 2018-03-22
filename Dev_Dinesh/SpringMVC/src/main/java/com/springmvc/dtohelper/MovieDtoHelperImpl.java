@@ -11,14 +11,14 @@ public class MovieDtoHelperImpl implements MovieDtoHelper {
 	public Movie dtoToModel(MovieDto dto) {
 		Movie movie=new Movie();
 		movie.setMid(dto.getMid());
-		movie.setMoviename(dto.getMoviename());
+		movie.setTitle(dto.getTitle());
 		movie.setGenre(dto.getGenre());
 		return movie;
 	}
 	
 	public MovieDto modelToDto(Movie model) {
 		MovieDto movie = new MovieDto();
-		movie.setMoviename(model.getMoviename());
+		movie.setTitle(model.getTitle());
 		movie.setGenre(model.getGenre());
 		movie.setMid(model.getMid());
 		return movie;

@@ -12,6 +12,7 @@
 
 	<context:annotation-config />
 
+	<context:component-scan base-package="com.springmvc"></context:component-scan>
 	<context:property-placeholder
 		ignore-resource-not-found="true" system-properties-mode="OVERRIDE"
 		location="classpath*:application.properties" />
@@ -92,7 +93,7 @@
 	 -->
 	<!--End of JPA Configuraiotn -->
 		
-	<!-- Hibernate session factory and DAO Configuration -->	
+	<!-- Hibernate session factory and DAo Configuration -->	
 	
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
@@ -110,16 +111,20 @@
 		</property>
 	</bean>
 
-	<bean id="hibernateTemplate"
+	<!-- <bean id="hibernateTemplate"
 		class="org.springframework.orm.hibernate5.HibernateTemplate">
 		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+	</bean> -->
 	
-	<bean id="movieDao" class="com.springmvc.dao.MovieDaoImpl" >
-		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	<!-- <bean id="movieDao" class="com.springmvc.dao.MovieDaoImpl" >
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
-	
+	 -->
+	 <bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:component-scan base-package="com.springmvc.service"/>
-	<context:component-scan base-package="com.springmvc.dtohelper"/>
 	 
 </beans>
