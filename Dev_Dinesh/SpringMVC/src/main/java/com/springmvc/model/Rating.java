@@ -1,5 +1,6 @@
 package com.springmvc.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -8,26 +9,20 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
-@Table(name="rating", schema="moviestore")
+@Table(name = "rating", schema = "moviestore")
 public class Rating {
-	
+
 	@Id
-	@Column(name="rating")
+	@Column(name = "rating")
 	private float rating;
-	
-	
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "mid")
-	@JsonIgnore
 	private Movie movie;
-	
-	@ManyToOne(fetch = FetchType.EAGER)
+
+	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinColumn(name = "username")
-	@JsonIgnore
 	private User user;
 
 	public float getRating() {
@@ -53,10 +48,5 @@ public class Rating {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
-	
 
-
-
-	
 }

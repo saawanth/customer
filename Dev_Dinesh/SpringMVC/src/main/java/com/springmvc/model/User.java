@@ -1,11 +1,15 @@
 package com.springmvc.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,9 +26,15 @@ public class User {
 	@Column(name = "age")
 	private int age;
 	
-	@OneToMany(mappedBy = "user")
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH })
+	@JoinTable(name = "join_table", joinColumns= @JoinColumn(name="username"), inverseJoinColumns = @JoinColumn(name = "mid"))
+	@JsonIgnore
+	private List<Movie> movie;
+
+	
+	@OneToMany(mappedBy = "user",cascade = CascadeType.ALL)
 	@JsonIgnore 
-	private List<Rating> ratings = new ArrayList<Rating>();
+	private List<Rating> ratings;
 
 	public String getUsername() {
 		return username;

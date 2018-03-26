@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -41,13 +41,12 @@ public class MovieDaoImpl implements MovieDao {
 	
 	
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Movie> getMovieByUser(String username) {
-		Session session=sessionFactory.openSession();
-		Query query=session.createQuery("select r.username,m.title,r.rating from Movie m left join Rating r on m.mid=r.mid where r.username=:name");
-		query.setParameter("name",username);
-		List list=query.list();
-		return list;
-
+		Query query=sessionFactory.getCurrentSession().createQuery("from Movie where Movie.ratings.username=:name");
+		query.setParameter("name", username);
+		return query.list();
+		//return sessionFactory.getCurrentSession().createNativeQuery("from Movie where Movie.users.username=:username",username).list();
 	}
 
 	public Movie getMovieByMovieId(int id) {
