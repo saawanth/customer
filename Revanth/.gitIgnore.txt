@@ -1,6 +1,13 @@
-/target/
-.settings/
-.classpath
+*.class
+target/*
 .project
-/bin/
-.class
+.classpath
+.settings/
+bin/
+Thumbs.db
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/target

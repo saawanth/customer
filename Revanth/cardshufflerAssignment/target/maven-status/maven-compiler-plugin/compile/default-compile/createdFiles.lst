@@ -1,0 +1,10 @@
+CardShufflerController\HomeController.class
+cardModel\Card.class
+cardShufflerService\CardShufflerService.class
+cardShufflerService\CardShufflerServiceImpl.class
+shufflingAlgorithm\ShufflerAlgorithmSimpleImplementation.class
+cardModel\Suits.class
+cardModel\Rank.class
+shufflingAlgorithm\ShuffleAlgorithmToughImplmpl.class
+cardModel\CardsDeck.class
+shufflingAlgorithm\ShuffleAlgorithm.class
