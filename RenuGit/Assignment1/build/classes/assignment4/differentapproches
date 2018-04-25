@@ -1,0 +1,70 @@
+/*{
+		 if(i + leap >= game.length || i == game.length - 1) {
+			return true;
+		 }else {
+			 if {
+		
+			 return  canWin(leap, game, i + 1);
+		 }
+		}
+		}*/
+		
+		/*else if(g[i+1] == 0){
+			return canWin(leap, g, i + 1); 
+		}else if(g[i+leap] == 0){
+			return canWin(leap, g, i + leap);
+		}else if(g[i-1] == 0){
+			try {
+			return canWin(leap, g, i - 1);
+			}catch(Exception e ) {
+				System.out.println("Exception in Thread");
+			}
+		}
+		return false;
+     	return canWin(leap, g, i + 1) || canWin(leap, g, i + leap) || canWin(leap, g, i - 1);
+		//calling method itself is called Recursion 
+		//Here we are calling method in return type */ 
+//===================================
+		// Implement here.
+		/*		int pIndex = 0;
+				while (pIndex < game.length - 1) {
+					if (game[pIndex + 1] == 0) {
+						pIndex++;
+					} else {
+						if (((pIndex + leap) < game.length - 1) && (game[pIndex + leap] == 0)) {
+							pIndex = pIndex + leap;
+						} else if (((pIndex + leap) < game.length - 1) && game[pIndex + leap] == 1) {
+							if ((pIndex - 1) >= 0 && game[pIndex - 1] == 0 && (game[(pIndex - 1) + leap] == 0)) {
+								pIndex = (pIndex - 1) + leap;
+							} else {
+								return false;
+							}
+						} else if ((pIndex + leap) > game.length - 1) {
+							System.out.println(pIndex);
+							return true;
+						}
+					}
+				}
+				System.out.println(pIndex);
+				return (pIndex >= game.length - 1);*/
+//=====================================================================		
+/*		for(; i  < game.length - 1; ) {
+			if (game[i + 1] == 0) {
+				i++;
+			} else {
+				if (((i + leap) < game.length - 1) && (game[i + leap] == 0)) {
+					i = i + leap;
+				} else if (((i + leap) < game.length - 1) && game[i + leap] == 1) {
+					if ((i - 1) >= 0 && game[i - 1] == 0 && (game[(i - 1) + leap] == 0)) {
+						i = (i - 1) + leap;
+					} else {
+						return false;
+					}
+				} else if ((i + leap) > game.length - 1) {
+					System.out.println(i);
+					return true;
+				}
+			}
+		}
+		System.out.println(i);
+		return (i >= game.length - 1);*/
