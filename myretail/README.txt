@@ -1,10 +1,15 @@
 Frameworks used:
-Spring boot version 1.3.3.RELEASE
-Spring data mongodb: 1.8.4.RELEASE
-mongo-java-driver: 2.13.3.RELEASE
+Spring boot version 1.5.12.RELEASE
+Spring data mongodb: 1.5.12.RELEASE
+mongo-java-driver: 3.7.0.RELEASE
 
 Used mongoDB as the data store
-MongoDB version 3.4.1 
+MongoDB version 3.4.3
+
+UserName:rajesh
+Password:aj4JR96alLBdn7Bw 
+
+mongodb://rajesh:aj4JR96alLBdn7Bw@myretailcluster-shard-00-00-szy5j.mongodb.net:27017,myretailcluster-shard-00-01-szy5j.mongodb.net:27017,myretailcluster-shard-00-02-szy5j.mongodb.net:27017/test?ssl=true&replicaSet=myretailcluster-shard-0&authSource=admin
 
 To test it locally
 1. Install latest and stable version of the MongoDB.

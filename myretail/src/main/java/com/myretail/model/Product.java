@@ -2,8 +2,10 @@ package com.myretail.model;
 
 import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 
 @Document(collection = "products")
 public class Product {

@@ -1,9 +1,15 @@
 package com.myretail;
 
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 import com.myretail.dto.PriceDto;
 import com.myretail.dto.ProductDto;
@@ -15,7 +21,7 @@ import com.myretail.service.ProductService;
 @SpringBootApplication
 public class MyRetailCommandLineRunner implements CommandLineRunner {
 
-	@Autowired
+	@Autowired 
 	private ProductService productService;
 
 	@Autowired
@@ -23,6 +29,17 @@ public class MyRetailCommandLineRunner implements CommandLineRunner {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyRetailCommandLineRunner.class, args);
+	}
+	
+	@Bean
+	public RestTemplate restTemplate() {
+		CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(new NoopHostnameVerifier())
+				.build();
+
+		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+		requestFactory.setHttpClient(httpClient);
+
+		return new RestTemplate(requestFactory);
 	}
 
 	@Override
@@ -34,6 +51,7 @@ public class MyRetailCommandLineRunner implements CommandLineRunner {
 		productService.save(new ProductDto(1234l, "Dell Latitude 1460", "Dell"));
 		productService.save(new ProductDto(1235l, "Dell Inspiron 1460", "Dell"));
 		productService.save(new ProductDto(13860428l, "The Big Lebowski (Blu-ray) (Widescreen)", "LG"));
+		//	Example product IDs: 15117729, 16483589, 16696652, 16752456, 15643793)
 		productPriceRepository.save(new ProductPrice(1234l, 1099.99, Currency.USD));
 		productPriceRepository.save(new ProductPrice(1235l, 1199.99, Currency.USD));
 		productPriceRepository.save(new ProductPrice(13860428l, 599.99, Currency.USD));

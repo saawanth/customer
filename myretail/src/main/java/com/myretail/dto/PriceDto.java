@@ -1,5 +1,6 @@
 package com.myretail.dto;
 
+
 import com.myretail.model.Currency;
 
 public class PriceDto {
