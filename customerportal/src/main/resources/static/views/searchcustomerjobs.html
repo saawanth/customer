@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Main Page</title>
+</head>
+<body ng-app="demo">
+<hr/>
+<div class="container" ng-controller="CustomerController">
+    <div class="row">    
+		<label>FromDate</label> <input type="text" ng-model="customerSearchDto.fromDate" class="input-sm spacing"/>
+	    <label>ToDate</label> <input type="text" ng-model="customerSearchDto.toDate" class="input-sm spacing"/>
+        
+        <button ng-click="searchCustomerJobs()" class="btn btn-sm btn-info">Search</button>
+    </div>
+    <hr/>
+    <!-- 
+    <div class="row">
+        <p>{{allCustomerJobs | json}}</p>
+    </div>
+     -->
+    <hr/>
+    <div class="row">
+        	<span ng-repeat="customerJob in allCustomerJobs" class="spacing">
+	            {{customerJob.customer.customerName}}
+	            {{customerJob.customer.state}}
+	            {{customerJob.customer.contactNumber}}
+	            {{customerJob.jobType}}
+	            {{customerJob.jobStatus}}
+	            {{customerJob.dueDate}}
+	            {{customerJob.missComment}}
+	            {{customerJob.notificationSent}}
+	            {{customerJob.returnMessage}}
+	            <br>
+            </span>    
+    </div>
+</div>
+</body>
+
+<script src="../js/lib/angular.min.js"></script>
+<script src="../js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="../js/app/app.js"></script>
+<script src="../js/app/CustomerController.js"></script>
+<script src="../js/app/CustomerService.js"></script>
+<link rel="stylesheet" href="../css/lib/bootstrap.min.css"/>
+<link rel="stylesheet" href="../css/app/app.css"/>
+</html>
