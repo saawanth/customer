@@ -13,13 +13,7 @@
         
         <button ng-click="searchCustomerJobs()" class="btn btn-sm btn-info">Search</button>
     </div>
-    <hr/>
-    <!-- 
-    <div class="row">
-        <p>{{allCustomerJobs | json}}</p>
-    </div>
-     -->
-    <hr/>
+    
     <div class="row">
         	<span ng-repeat="customerJob in allCustomerJobs" class="spacing">
 	            {{customerJob.customer.customerName}}
