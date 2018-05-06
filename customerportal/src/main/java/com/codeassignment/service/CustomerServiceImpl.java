@@ -31,9 +31,19 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	public List<Job> findJobsByDate(Date fromDate, Date toDate) {
-//		List<Job> tasks = (List<Job>) jobRepository.findJobsByDate(new java.sql.Date(fromDate.getTime()), new java.sql.Date(toDate.getTime()));
-		List<Job> tasks = (List<Job>) jobRepository.findAll();
-		return tasks;
+		List<Job> jobs = null;
+		if (fromDate == null && toDate == null) {
+			jobs = (List<Job>) jobRepository.findAll();
+		} else {
+			if (fromDate != null && toDate == null) {
+				toDate = fromDate;
+			} else if (fromDate == null && toDate != null) {
+				fromDate = toDate;
+			}
+			jobs = (List<Job>) jobRepository.findJobsByDate(new java.sql.Date(fromDate.getTime()),
+					new java.sql.Date(toDate.getTime()));
+		}
+		return jobs;
 	}
 
 	@Override

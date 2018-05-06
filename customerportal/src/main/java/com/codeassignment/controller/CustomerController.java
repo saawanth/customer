@@ -49,7 +49,6 @@ public class CustomerController {
 			fromDate = sdf.parse(fromDateStr);
 			toDate = sdf.parse(toDateStr);
 		} catch (ParseException e) {
-			e.printStackTrace();
 		}
 
 		List<Job> jobs = customerService.findJobsByDate(fromDate, toDate);
