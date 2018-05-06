@@ -13,7 +13,8 @@
         
         <button ng-click="searchCustomerJobs()" class="btn btn-sm btn-info">Search</button>
     </div>
-    
+	<hr/>    
+    <!--
     <div class="row">
         	<span ng-repeat="customerJob in allCustomerJobs" class="spacing">
 	            {{customerJob.customer.customerName}}
@@ -26,13 +27,62 @@
 	            {{customerJob.notificationSent}}
 	            {{customerJob.returnMessage}}
 	            <br/>
-            </span>    
+            </span>
     </div>
+    -->
+    
+    <table st-table="rowCollection" class="table table-striped">
+		<thead>
+		<tr>
+			<th st-sort="customerName">Customer Name</th>
+			<th st-sort="jobId">Job Id</th>
+			<th st-sort="correlationId">Correlation Id</th>
+			<th st-sort="jobType">Job Type</th>
+			<th st-sort="jobStatus">Job Status</th>
+			<th st-sort="dueDate">Due Date</th>
+			<th st-sort="missCommit">Miss Commit</th>
+			<th st-sort="customerState">State</th>
+			<th st-sort="contactNumber">Primary Contact NO</th>
+			<th st-sort="notificationSent">Notification Sent</th>
+			<th st-sort="returnMessage">Return Message</th>
+		</tr>
+		<tr>
+			<th>
+				<input st-search="'customerName'" placeholder="search for customerName" class="input-sm form-control" type="search"/>
+			</th>
+		</tr>
+		</thead>
+		
+		<tbody>
+		<tr ng-repeat="customerJob in allCustomerJobs">
+			<td>{{customerJob.customer.customerName | uppercase}}</td>
+			<td>{{customerJob.id}}</td>
+			<td>{{customerJob.id}}</td>
+			<td>{{customerJob.jobType}}</td>
+			<td>{{customerJob.jobStatus}}</td>
+			<td>{{customerJob.dueDate}}</td>
+			<td>{{customerJob.missComment}}</td>
+			<td>{{customerJob.customer.state}}</td>
+			<td>{{customerJob.customer.contactNumber}}</td>
+			<td>{{customerJob.notificationSent}}</td>
+			<td>{{customerJob.returnMessage}}</td>
+		</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="11" class="text-center">
+					<div st-pagination="" st-items-by-page="itemsByPage" st-displayed-pages="7"></div>
+				</td>
+			</tr>
+		</tfoot>
+    </table>
+    
 </div>
 </body>
 
 <script src="../js/lib/angular.min.js"></script>
 <script src="../js/lib/ui-bootstrap-tpls-2.5.0.min.js"></script>
+<script src="../js/lib/smart-table.min.js"></script>
 <script src="../js/app/app.js"></script>
 <script src="../js/app/CustomerController.js"></script>
 <script src="../js/app/CustomerService.js"></script>

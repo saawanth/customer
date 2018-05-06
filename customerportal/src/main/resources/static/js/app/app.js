@@ -1,6 +1,6 @@
 'use strict'
 
-var demoApp = angular.module('demo', [ 'ui.bootstrap', 'demo.controllers', 'demo.services' ]);
+var demoApp = angular.module('demo', ['smart-table', 'ui.bootstrap', 'demo.controllers', 'demo.services' ]);
 
 demoApp.constant("CONSTANTS", {	
 	getCustomerByIdUrl : "/customers/",
